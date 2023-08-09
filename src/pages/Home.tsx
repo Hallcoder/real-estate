@@ -1,6 +1,9 @@
 import Hero from "../components/Hero";
+import BlankBar from "../components/BlankBar";
 import Search from "../components/search";
 import SearchHeader from "../components/searchHeader";
+import PropertiesHeader from "../components/propertiesHeader";
+import Properties from "../components/properties";
 
 function Home() {
     return ( 
@@ -10,6 +13,9 @@ function Home() {
           <main id='#search'>
           <SearchHeader />
           <Search />
+          <BlankBar />
+          <PropertiesHeader />
+          <Properties />
           </main>
         </div>
      );
