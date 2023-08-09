@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utility{
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+  *{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .bgImg{
+    position:relative;
+    background-image:url("./assets/hero-bg1.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    /* opacity:0.6; */
+  }
+ 
+ 
+}
