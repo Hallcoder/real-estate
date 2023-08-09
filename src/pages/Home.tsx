@@ -4,6 +4,7 @@ import Search from "../components/search";
 import SearchHeader from "../components/searchHeader";
 import PropertiesHeader from "../components/propertiesHeader";
 import Properties from "../components/properties";
+import CategoryProperty from "../components/CategoryProperty";
 
 function Home() {
     return ( 
@@ -14,8 +15,9 @@ function Home() {
           <SearchHeader />
           <Search />
           <BlankBar />
-          <PropertiesHeader />
+          <PropertiesHeader  />
           <Properties />
+          <CategoryProperty />
           </main>
         </div>
      );

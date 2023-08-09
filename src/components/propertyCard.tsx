@@ -1,6 +1,6 @@
 import apartment from "../assets/apartment.jpg";
 import { CiGrid42 } from "react-icons/ci";
-import {MdLocationPin} from "react-icons/md";
+import {MdLocationPin,MdAdd} from "react-icons/md";
 import { TbBed,TbBath } from "react-icons/tb";
 type Props = {
   name: string;
@@ -19,11 +19,11 @@ const PropertyCard: React.FC<Props> = ({
   location
 }) => {
   return (
-    <div className="flex flex-col rounded-md cursor-pointer  m-2 shadow-md">
+    <div className="flex flex-col w-1/4 rounded-md cursor-pointer m-6 shadow-md">
       <div className="relative ">
         <img src={apartment} alt="apartment view" className="shadow-md" />
-        <button className="bg-[#333333] p-3 text-white top-[87%] left-[38%] rounded-md absolute">
-          ${price}
+        <button className="bg-[#333333] p-3 w-7/12 text-white top-[87%] left-[21%] rounded-md absolute">
+          ${price}{status.toLowerCase() == 'sale' && ' PER MONTH'}
         </button>
       </div>
       <div className="flex flex-col mt-10 justify-around items-center">
@@ -39,8 +39,10 @@ const PropertyCard: React.FC<Props> = ({
               <strong className="font-semibold">{size.toString()}</strong> Sq M
             </p>
           </div>
+          <button><MdAdd /></button>
           <div className="flex items-center justify-around w-4/12">
             <TbBed />{amenities.bed}
+            <button>+</button>
             <TbBath />{amenities.bath}
           </div>
         </div>
