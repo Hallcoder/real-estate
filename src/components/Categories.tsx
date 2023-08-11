@@ -20,7 +20,7 @@ const Categories = () => {
           }`}
         >
           <div className="h-[60vh] m-2">
-            <img src={item.image} alt="" className='object-fill rounded-[2  0%] h-full w-full'/>
+            <img src={item.image} alt="" className='object-fill rounded-[20%] h-full w-full'/>
           </div>
         </div>
       ))}
