@@ -6,6 +6,7 @@ import PropertiesHeader from "../components/propertiesHeader";
 import Properties from "../components/properties";
 import CategoryProperty from "../components/CategoryProperty";
 import Categories from "../components/Categories";
+import Footer from "../components/Footer";
 
 function Home() {
     return ( 
@@ -20,6 +21,7 @@ function Home() {
           <Properties />
           <CategoryProperty />
           <Categories />
+          <Footer />
           </main>
         </div>
      );
