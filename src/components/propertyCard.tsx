@@ -1,6 +1,6 @@
 import apartment from "../assets/apartment.jpg";
 import { CiGrid42 } from "react-icons/ci";
-import {MdLocationPin,MdAdd} from "react-icons/md";
+import {MdLocationPin,MdOutlineStarBorderPurple500} from "react-icons/md";
 import { TbBed,TbBath } from "react-icons/tb";
 type Props = {
   name: string;
@@ -39,10 +39,10 @@ const PropertyCard: React.FC<Props> = ({
               <strong className="font-semibold">{size.toString()}</strong> Sq M
             </p>
           </div>
-          <button><MdAdd /></button>
+        <button className="bg-white border-[#333333] border hover:text-white hover:bg-[#333333] p-4 text-xl rounded-full text-[#333333] font-semibold"><MdOutlineStarBorderPurple500 /></button>
           <div className="flex items-center justify-around w-4/12">
             <TbBed />{amenities.bed}
-            <button>+</button>
+            <button >+</button>
             <TbBath />{amenities.bath}
           </div>
         </div>

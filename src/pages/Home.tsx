@@ -5,6 +5,7 @@ import SearchHeader from "../components/searchHeader";
 import PropertiesHeader from "../components/propertiesHeader";
 import Properties from "../components/properties";
 import CategoryProperty from "../components/CategoryProperty";
+import Categories from "../components/Categories";
 
 function Home() {
     return ( 
@@ -18,6 +19,7 @@ function Home() {
           <PropertiesHeader  />
           <Properties />
           <CategoryProperty />
+          <Categories />
           </main>
         </div>
      );
