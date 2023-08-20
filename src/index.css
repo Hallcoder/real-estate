@@ -12,8 +12,28 @@
     background-image:url("./assets/hero-bg1.jpg");
     background-size:cover;
     background-repeat:no-repeat;
+    background-attachment:fixed;
     /* opacity:0.6; */
   }
- 
+  /* styles.css */
+
+/* Hide the webkit scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+  .darkened-image {
+  filter: brightness(70%);
+}
+
  
 }

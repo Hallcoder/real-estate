@@ -2,6 +2,7 @@ import apartment from "../assets/apartment.jpg";
 import { CiGrid42 } from "react-icons/ci";
 import {MdLocationPin,MdOutlineStarBorderPurple500} from "react-icons/md";
 import { TbBed,TbBath } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 type Props = {
   name: string;
   status: string;
@@ -18,8 +19,9 @@ const PropertyCard: React.FC<Props> = ({
   size,
   location
 }) => {
+  const navigate = useNavigate();
   return (
-    <div className="flex flex-col w-1/4 rounded-md cursor-pointer m-6 shadow-md">
+    <div className="flex flex-col w-1/4 rounded-md cursor-pointer m-6 shadow-md" onClick={() => navigate('/propId')}>
       <div className="relative ">
         <img src={apartment} alt="apartment view" className="shadow-md" />
         <button className="bg-[#333333] p-3 w-7/12 text-white top-[87%] left-[21%] rounded-md absolute">
