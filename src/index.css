@@ -22,6 +22,39 @@
   width: 0.5em;
   height: 0.5em;
 }
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+}
+
+.back-to-top-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border:2px solid red;
+  background-color: white;
+  color: #333;
+  border-radius: 50%;
+  box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-to-top-button:hover {
+  background-color: #555;
+  transform: scale(1.1);
+}
 
 ::-webkit-scrollbar-thumb {
   background-color: transparent;

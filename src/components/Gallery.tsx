@@ -1,20 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+interface SplideInstance {
+  splide: any;
+  sync: any;
+  go: (index: number) => void;
+  // sync:();
+}
 
-const Gallery = ({ slides }) => {
+const Gallery:React.FC<{slides:any}> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const mainSliderRef = useRef(null);
-  const thumbnailSliderRef = useRef(null);
+  const mainSliderRef = useRef<SplideInstance>(null);
+  const thumbnailSliderRef = useRef<SplideInstance>(null);
 
-  const handleThumbnailClick = (index) => {
+  const handleThumbnailClick = (index:number) => {
     setCurrentSlide(index);
-    mainSliderRef.current.go(index);
+    mainSliderRef.current!.go(index);
   };
 
   useEffect(() => {
-    thumbnailSliderRef.current.sync(mainSliderRef.current.splide);
+    thumbnailSliderRef.current!.sync(mainSliderRef.current!.splide);
   }, []);
 
   return (
@@ -30,9 +35,9 @@ const Gallery = ({ slides }) => {
           heightRatio: 0.6,
         }}
         ref={mainSliderRef}
-        onMove={(splide) => setCurrentSlide(splide.index)}
+        onMove={(splide:any) => setCurrentSlide(splide.index)}
       >
-        {slides.map((slide, index) => (
+        {slides.map((slide:any, index:number) => (
           <SplideSlide key={index}>
             <img src={slide.image} alt={`Slide ${index}`} className="gallery-image" />
           </SplideSlide>
@@ -55,7 +60,7 @@ const Gallery = ({ slides }) => {
           className="gallery-thumbnails"
           ref={thumbnailSliderRef}
         >
-          {slides.map((slide, index) => (
+          {slides.map((slide:any, index:number) => (
             <SplideSlide key={index}>
               <img
                 src={slide.image}
