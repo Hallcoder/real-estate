@@ -69,7 +69,6 @@ const PropertyPage: React.FC<any> = () => {
        <div className="flex h-full">
        <Gallery slides={slides} />
        <div>
-
        </div>
        </div>
         <div className="w-5/6 ">
@@ -85,6 +84,22 @@ const PropertyPage: React.FC<any> = () => {
           quidem laborum impedit veniam nobis laudantium quo, asperiores omnis
           magnam ullam at optio a architecto. Ullam fuga reprehenderit nulla.</p>
           <BlankBar title="Address"/>
+          <span className="flex w-3/6 justify-between my-10">
+            <ul className="ml-4 text-lg">
+              <li><strong className="font-semibold">Address: </strong>Kigali, Kibagabaga, Rwanda</li>
+              <li><strong className="font-semibold">City: </strong>Kigali</li>
+              <li><strong className="font-semibold">District: </strong>Gasabo</li>
+              <li><strong className="font-semibold">Sector: </strong>Kibagabaga</li>
+            </ul>
+            <ul className="text-lg">
+            <li><strong className="font-semibold">Road: </strong>KG 245 ST</li>
+            <li><strong className="font-semibold">Zip: </strong>250</li>
+
+              <li></li>
+            </ul>
+          </span>
+          <BlankBar title="What's Nearby"/>
+
         </div>
         <BackToTopButton />
         <Footer />
