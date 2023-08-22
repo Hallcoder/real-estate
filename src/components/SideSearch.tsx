@@ -1,4 +1,4 @@
-function () {
+function SideSearch() {
     return ( 
         <div className="border w-full">
 
@@ -6,4 +6,4 @@ function () {
      );
 }
 
-export default ;
+export default SideSearch;
