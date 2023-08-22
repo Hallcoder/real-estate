@@ -99,7 +99,6 @@ const PropertyPage: React.FC<any> = () => {
             </ul>
           </span>
           <BlankBar title="What's Nearby"/>
-
         </div>
         <BackToTopButton />
         <Footer />
