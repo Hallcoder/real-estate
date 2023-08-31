@@ -4,7 +4,7 @@ import Home from './pages/Home'
 function App() {
 
   return (
-    <div className='h-[120vh]'>
+    <div>
      <Home/>
     </div>
   )
