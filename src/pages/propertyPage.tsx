@@ -6,15 +6,79 @@ import { properties, slides } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
+import {
+  TwitterIcon,
+  FacebookIcon,
+  PinterestIcon,
+  WhatsappIcon,
+} from "react-share";
+import {
+  WhatsappShareButton,
+  PinterestShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+} from "react-share";
 import BlankBar from "../components/BlankBar";
 import BackToTopButton from "../components/BackToTop";
 import NearBy from "../components/Nearby";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import SideFeaturedProperties from "../components/SideFeaturedProperties";
 import AdditionalFeatures from "../components/AdditionalFeatures";
 import Contact from "../components/Contact";
+import Agent from "../components/Agent";
+// import { useParams } from "react-router-dom";
 const PropertyPage: React.FC<any> = () => {
   useEffect(() => {}, []);
+  const MySwal = withReactContent(Swal);
+  const OpenSharePopup = () => {
+    MySwal.fire({
+      title: <p>Share to your friends</p>,
+      html: (
+        <div className="gap-2">
+          <TwitterShareButton
+            children={
+              <button className="m-2 flex items-center bg-[#00ACED] text-white p-2 rounded-sm">
+                <TwitterIcon size={"26"} />
+                Twitter
+              </button>
+            }
+            url={"https://dreamhomes-ten.vercel.app"}
+          />
+          <FacebookShareButton
+            children={
+              <button className="m-2 flex items-center bg-[#3B5998] text-white p-2 rounded-sm">
+                <FacebookIcon size={"26"} /> Facebook
+              </button>
+            }
+            url={"https://dreamhomes-ten.vercel.app"}
+          />
+          <PinterestShareButton
+            children={
+              <button className="m-2 flex items-center bg-[#CB2128] text-white p-2 rounded-sm">
+                <PinterestIcon size={"26"} /> Pinterest
+              </button>
+            }
+            url={"https://dreamhomes-ten.vercel.app"}
+            media={"https://dreamhomes-ten.vercel.app"}
+          />
+          <WhatsappShareButton
+            children={
+              <button className="m-2 flex items-center bg-[#25D366] text-white p-2 rounded-sm">
+                <WhatsappIcon size={"26"} /> Whatsapp
+              </button>
+            }
+            url={"https://dreamhomes-ten.vercel.app"}
+          />
+        </div>
+      ),
+    }).then(() => {
+      return MySwal.fire(<p>Sharing is Caring!</p>);
+    });
+  };
+
   const nearby = ["hospital", "school", "restaurant"];
+  // const params = useParams();
   return (
     <div className="bgImg flex flex-col h-screen bg-white">
       <BreadCrumb name={"Kibagabaga"} />
@@ -43,7 +107,7 @@ const PropertyPage: React.FC<any> = () => {
             </span>
           </span>
           <div className="">
-            <div className="flex my-4 justify-between w-2/6">
+            <div className="flex my-4 justify-between w-full">
               <span className="flex items-center">
                 <TbBath className="text-3xl" />
                 <span className="flex m-2 flex-col">
@@ -65,6 +129,12 @@ const PropertyPage: React.FC<any> = () => {
                   <p>Sq M</p>
                 </span>
               </span>
+              <button
+                onClick={() => OpenSharePopup()}
+                className="bg-blue-950 w-40 h-14 text-white p-2 rounded-md"
+              >
+                Share
+              </button>
             </div>
           </div>
           <div className="my-5">
@@ -75,7 +145,7 @@ const PropertyPage: React.FC<any> = () => {
           <div className="flex  w-full">
             <Gallery slides={slides} />
           </div>
-          <div className="w-[75vw] border-4">
+          <div className="w-[75vw]">
             <BlankBar title={"Description"} />
             <p className="ml-2">
               {" "}
@@ -130,8 +200,11 @@ const PropertyPage: React.FC<any> = () => {
               <BlankBar title="Additional Features" />
               <AdditionalFeatures />
             </div>
-            <Contact />
-            
+            <div>
+              <Contact />
+              <BlankBar title="Agent" />
+              <Agent />
+            </div>
           </div>
           <BackToTopButton />
         </div>
