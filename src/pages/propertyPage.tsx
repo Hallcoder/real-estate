@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { CiGrid42 } from "react-icons/ci";
 import { AiFillPrinter } from "react-icons/ai";
+import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
 import { properties, slides } from "../utils/constants";
 import Gallery from "../components/Gallery";
@@ -27,6 +28,7 @@ import SideFeaturedProperties from "../components/SideFeaturedProperties";
 import AdditionalFeatures from "../components/AdditionalFeatures";
 import Contact from "../components/Contact";
 import Agent from "../components/Agent";
+import { Fab } from "@mui/material";
 // import { useParams } from "react-router-dom";
 const PropertyPage: React.FC<any> = () => {
   useEffect(() => {}, []);
@@ -207,8 +209,15 @@ const PropertyPage: React.FC<any> = () => {
             </div>
           </div>
           <BackToTopButton />
+          
         </div>
-        <div>
+        <div className="flex flex-col items-center">
+        <span className="m-2 inline-block">
+        <Fab  color="inherit" variant='extended' aria-label="add">
+          <SearchIcon />
+          Search Property
+          </Fab>
+        </span>
           <SideFeaturedProperties properties={properties} />
         </div>
       </div>

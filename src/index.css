@@ -26,6 +26,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
+  color:white;
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s;
@@ -42,8 +43,8 @@
   width: 60px;
   height: 60px;
   border:2px solid red;
-  background-color: white;
-  color: #333;
+  background-color: orange;
+  color: white;
   border-radius: 50%;
   box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;

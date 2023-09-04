@@ -1,5 +1,9 @@
 import img from "../assets/apartment.jpg";
-import img2 from "../assets/Outlook.jpg"
+import img2 from "../assets/Outlook.jpg";
+import agent from "../assets/agent.jpeg";
+import { BiHome, BiDollarCircle } from 'react-icons/bi';
+import { MdLocationOn, MdSecurity } from 'react-icons/md';
+
 export const slides = [
     {
       image: img,
@@ -197,3 +201,46 @@ export const  properties = [
       size: 2200.00
   }
 ];
+
+export const services = [
+  {
+    icon: <BiHome />,
+    title: "Property Listings",
+    description:
+      "Discover a diverse range of properties, from cozy apartments to spacious family homes, tailored to your unique needs and preferences.",
+  },
+  {
+    icon: <MdLocationOn />,
+    title: "Prime Locations",
+    description:
+      "Explore prime real estate locations in Rwanda, carefully selected for their convenience, safety, and potential for growth.",
+  },
+  {
+    icon: <BiDollarCircle />,
+    title: "Competitive Pricing",
+    description:
+      "Benefit from our expert pricing strategies, ensuring that you get the best value for your investment in the property market.",
+  },
+  {
+    icon: <MdSecurity />,
+    title: "Secure Transactions",
+    description:
+      "Rest easy knowing that every transaction is handled with the utmost care and security, protecting your interests at every step.",
+  },
+];
+
+export const agents = [
+  {
+    name:'Mwenedata Apotre',
+    img:agent,
+    title:"Property Agent",
+    mobile:"+250789238523"
+  },
+  {
+    name:'Georgette',
+    img:agent,
+    title:"Property Manager",
+    mobile:"+250789238523"
+  },
+]
+

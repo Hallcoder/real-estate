@@ -1,7 +1,7 @@
 import img from "../assets/agent.jpeg";
 function Agent() {
   return (
-    <div className="flex justify-around text-lg">
+    <div className="flex justify-around text-lg ">
       <img src={img} className="w-60 h-60 rounded-md m-2" alt="our agent" />
       <div>
         <h1 className="text-lg font-semibold text-[#333]">Mwenedata Apotre</h1>
