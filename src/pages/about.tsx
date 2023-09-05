@@ -1,10 +1,15 @@
 import Footer from "../components/Footer";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 import Slideshow from "../components/Slideshow";
-import { agents, services, slides } from "../utils/constants";
+import { agents, services, slides, testimonialData } from "../utils/constants";
 import ServiceCard from "../components/ServiceCard";
 import AgentCard from "../components/AgentCard";
+import { useEffect } from "react";
+import TestimonialCard from "../components/testimonial";
 function About() {
+  useEffect(() => {
+    document.title = "About us - Real State Agent in Rwanda";
+  }, []);
   return (
     <div>
       <main className="flex items-center flex-col">
@@ -33,13 +38,22 @@ function About() {
           })}
         </div>
         <h2 className="my-20 text-4xl">
-          <h1>Our</h1><strong>Agents</strong>
+          <h1>Our</h1>
+          <strong>Agents</strong>
         </h2>
         <div className="flex gap-24 m-2">
-            {agents.map((agent,index)=> {
-              return <AgentCard {...agent} key={index}/>
-            }) }
-          </div>
+          {agents.map((agent, index) => {
+            return <AgentCard {...agent} key={index} />;
+          })}
+        </div>
+        <h2 className="my-20 text-4xl">
+          <strong>Testimonials</strong>
+        </h2>
+        <div className="flex w-full gap-2">
+          {testimonialData.map((test,index)=>{
+            return <TestimonialCard {...test} key={index}/>
+          })}
+        </div>
       </main>
       <Footer />
     </div>

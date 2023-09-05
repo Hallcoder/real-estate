@@ -244,3 +244,26 @@ export const agents = [
   },
 ]
 
+export const testimonialData = [
+  {
+    testimonial:
+      "Working with Elite RS was an incredible experience. Their dedication to finding the perfect property for me was unmatched. I couldn't be happier with the results.",
+    name: "Gia Leini",
+    occupation: "Real Estate Investor, Elite RS",
+  },
+  {
+    testimonial:
+      "Elite RS exceeded my expectations. They not only helped me find an investment property but also provided valuable advice on property management. True experts in the field!",
+    name: "Ismael Mwanafunzi",
+    occupation: "Real Estate Investor",
+  },
+  {
+    testimonial:
+      "I'm not just impressed; I'm blown away by the level of service provided by Elite RS. Their attention to detail and commitment to their clients make them the best in the industry.",
+    name: "Idris Alba",
+    occupation: "Actor, Hollywood",
+  },
+  // Add more testimonials as needed
+];
+
+

@@ -8,6 +8,7 @@ import Rent from "./pages/Rent.tsx";
 import Header from "./components/Header.tsx";
 import InfoHeader from "./components/infoHeader.tsx";
 import PropertyPage from "./pages/propertyPage.tsx";
+import ContactPage from "./pages/Contact.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Route path="/buy" element={<Buy />} />
       <Route path="/rent" element={<Rent />} />
       <Route path="/" element={<App />} />
+      <Route path='/contact' element={<ContactPage /> }/>
       <Route path="/:id" element={<PropertyPage />} />
     </Routes>
   </BrowserRouter>
