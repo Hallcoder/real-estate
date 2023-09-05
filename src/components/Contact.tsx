@@ -7,7 +7,7 @@ function Contact() {
         <TextField className='w-full' id="standard-basic" label="Name" variant="outlined"  />
         <TextField className='w-full' id="standard-basic" label="Phone" type='string' variant="outlined" />
         <TextField className='w-full' id="standard-basic" label="Email" type='email' variant="outlined" />
-        <textarea name="description" placeholder='Describe what you want to tell us' className="border-2 indent-2 w-full" id="textareadescription" cols={20} rows={10}></textarea>
+        <textarea name="description" placeholder='Describe what you want to tell us' className="border-2 indent-2 w-full" id="textareadescription" cols={20} rows={5}></textarea>
         <button className='p-2 bg-[#333333] rounded-sm text-white text-lg w-1/3'>Send</button>
       </form>
     </div>
