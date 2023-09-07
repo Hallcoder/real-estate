@@ -4,9 +4,9 @@ function InfoHeader() {
   return (
     <div className="flex md:flex md:flex-col sm:h-[10vh] sm:flex-col bg-[#333333] h-[18vh] max-w-[100%]">
       <div className="flex items-center w-3/12 text-center">
-        <img src={logo} alt="" className="h-24 w-6/12 m-2 ml-6" />
+        <img src={logo} alt="" className="h-24 max-w-[100px] w-6/12 m-2 ml-6" />
       </div>
-      <article className="w-9/12 flex sm:flex-col justify-around">
+      <article className="w-9/12 flex md:hidden sm:hidden justify-around">
       <div className="flex justify-center items-center">
         <div>
           <MdLocationPin className="text-6xl text-[#D9C8B8]" />

@@ -10,6 +10,10 @@ import { slides } from "../utils/constants";
 import Footer from "../components/Footer";
 
 function Home() {
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+// Log the width to the console
+console.log(`Screen width in pixels: ${screenWidth}`);
   return (
     <div>
       <header>
@@ -23,7 +27,7 @@ function Home() {
         desired property options (for example: Type: Houses, Location: Any,
         Status: For Rent) to see all houses for rent that we have listed.
       </p>
-      <main id="#search">
+      <main id="#search" className="w-full">
         <SearchHeader />
         <Search />
         <BlankBar />
