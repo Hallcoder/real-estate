@@ -1,15 +1,12 @@
 import Footer from "../components/Footer";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 import Slideshow from "../components/Slideshow";
-import { agents, services, slides, testimonialData } from "../utils/constants";
+import { agents,services, slides, testimonialData } from "../utils/constants";
 import ServiceCard from "../components/ServiceCard";
 import AgentCard from "../components/AgentCard";
-import { useEffect } from "react";
 import TestimonialCard from "../components/testimonial";
 function About() {
-  useEffect(() => {
-    document.title = "About us - Real State Agent in Rwanda";
-  }, []);
+ 
   return (
     <div>
       <main className="flex items-center flex-col">

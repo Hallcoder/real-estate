@@ -3,7 +3,7 @@ import img2 from "../assets/Outlook.jpg";
 import agent from "../assets/agent.jpeg";
 import { BiHome, BiDollarCircle } from 'react-icons/bi';
 import { MdLocationOn, MdSecurity } from 'react-icons/md';
-
+import {createClient} from '@sanity/client';
 export const slides = [
     {
       image: img,
@@ -267,3 +267,9 @@ export const testimonialData = [
 ];
 
 
+
+export const client = createClient({
+  projectId:'qupjimeu',
+  dataset:'production',
+  useCdn:true
+})

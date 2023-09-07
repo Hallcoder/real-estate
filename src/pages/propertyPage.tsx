@@ -3,7 +3,7 @@ import { CiGrid42 } from "react-icons/ci";
 import { AiFillPrinter } from "react-icons/ai";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { properties, slides } from "../utils/constants";
+import { client, properties, slides } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
@@ -29,10 +29,18 @@ import AdditionalFeatures from "../components/AdditionalFeatures";
 import Contact from "../components/Contact";
 import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const PropertyPage: React.FC<any> = () => {
-  useEffect(() => {}, []);
+  const params = useParams();
+  // const [property,setProperty] = useState<any>();
+  useEffect(() => {
+    client.fetch(`*[_type == 'property' && _id ==${params.id}]`).then(data =>{
+      // setProperty(data);
+      console.log(data);
+    });
+  }, []);
   const MySwal = withReactContent(Swal);
+  // const {name,address,sizeInMeterSquare} = property;
   const OpenSharePopup = () => {
     MySwal.fire({
       title: <p>Share to your friends</p>,
@@ -85,7 +93,7 @@ const PropertyPage: React.FC<any> = () => {
     <div className="bgImg flex flex-col h-screen bg-white">
       <BreadCrumb name={"Kibagabaga"} />
       <p className="font-bold text-5xl flex items-center text-white m-8">
-        Kibagabaga Apartments
+      Kibagabaga Apartment
       </p>
       <div className="flex bg-white">
         <div className="bg-white mt-5 w-9/12">

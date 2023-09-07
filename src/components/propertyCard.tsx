@@ -11,6 +11,7 @@ type Props = {
   size: Number;
   location:string;
   width?:string;
+  
 };
 const PropertyCard: React.FC<Props> = ({
   price,
