@@ -8,13 +8,13 @@ import TestimonialCard from "../components/testimonial";
 function About() {
  
   return (
-    <div>
+    <div className=" overflow-hidden">
       <main className="flex flex-wrap items-center flex-col">
         <MdOutlineRealEstateAgent className="text-5xl mt-10" />
         <h2 className="text-center text-3xl my-12">
           <strong>Dream Homes</strong>, Crafting Your Dreams Into Reality!
         </h2>
-        <p className="text-xl m-8">
+        <p className="text-xl text-center sm:m-8">
           Dream Homes, your trusted real estate partner since 2017, has been
           shaping the vibrant real estate landscape of Rwanda. With an
           unwavering commitment to excellence, we bring you a wealth of
@@ -23,7 +23,7 @@ function About() {
           Dream Homes difference and let us lead you on a journey to find your
           perfect home.
         </p>
-        <div className="w-[98%]">
+        <div className="sm:w-[100%]">
           <Slideshow slides={slides} />
         </div>
         <h2 className="my-12 text-3xl">
@@ -38,7 +38,7 @@ function About() {
           <h1>Our</h1>
           <strong>Agents</strong>
         </h2>
-        <div className="flex sm:gap-24 gap-4 m-2">
+        <div className="flex sm:flex-row flex-col sm:gap-24 gap-4 m-2">
           {agents.map((agent, index) => {
             return <AgentCard {...agent} key={index} />;
           })}
@@ -46,7 +46,7 @@ function About() {
         <h2 className="my-20 text-4xl">
           <strong>Testimonials</strong>
         </h2>
-        <div className="flex w-full gap-2">
+        <div className="flex flex-wrap w-full gap-2">
           {testimonialData.map((test,index)=>{
             return <TestimonialCard {...test} key={index}/>
           })}

@@ -46,7 +46,7 @@ const Slideshow = ({ slides }) => {
   
 
   return (
-    <div className=''> {/* Wrap the slider in a container */}
+    <div className='w-full'> {/* Wrap the slider in a container */}
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <Slide key={index} {...slide} />

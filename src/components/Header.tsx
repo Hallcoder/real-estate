@@ -7,7 +7,7 @@ function Header() {
   const activeClass = " bg-orange-500 text-white p-3 text-xs font-semibold"
   return <nav className="flex  border  justify-between h-10 sticky top-0 bg-white z-10">
         <div className="text-center border flex justify-center w-full">
-          <ul className="list-none flex w-full justify-evenly sm:w-4/12 items-center h-full">
+          <ul className="list-none flex w-full justify-evenly sm:w-6/12 items-center h-full">
            <Link to='/' className={pathname == '' ? AClass + activeClass:AClass}>Homes</Link>
            <Link to='/rent' className={pathname == 'rent' ? AClass + activeClass:AClass}>Rent</Link>
            <Link to='/buy' className={pathname == 'buy' ? AClass + activeClass:AClass}>Buy</Link>
