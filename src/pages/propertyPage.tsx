@@ -34,10 +34,12 @@ const PropertyPage: React.FC<any> = () => {
   const params = useParams();
   // const [property,setProperty] = useState<any>();
   useEffect(() => {
-    client.fetch(`*[_type == 'property' && _id ==${params.id}]`).then(data =>{
-      // setProperty(data);
-      console.log(data);
-    });
+    client
+      .fetch(`*[_type == 'property' && _id ==${params.id}]`)
+      .then((data) => {
+        // setProperty(data);
+        console.log(data);
+      });
   }, []);
   const MySwal = withReactContent(Swal);
   // const {name,address,sizeInMeterSquare} = property;
@@ -90,13 +92,13 @@ const PropertyPage: React.FC<any> = () => {
   const nearby = ["hospital", "school", "restaurant"];
   // const params = useParams();
   return (
-    <div className="bgImg flex flex-col h-screen bg-white">
+    <div className="bgImg flex flex-col sm:h-screen bg-white">
       <BreadCrumb name={"Kibagabaga"} />
       <p className="font-bold text-5xl flex items-center text-white m-8">
-      Kibagabaga Apartment
+        Kibagabaga Apartment
       </p>
-      <div className="flex bg-white">
-        <div className="bg-white mt-5 w-9/12">
+      <div className="sm:flex-row flex-col flex bg-white">
+        <div className="bg-white mt-5 w-full sm:w-9/12">
           <p className="text-lg m-2">
             <strong>From $1300 -</strong> Apartment with good rooms nearby basic
             infrastructure and home facilities provided./ For RENT
@@ -152,10 +154,10 @@ const PropertyPage: React.FC<any> = () => {
               <strong className="font-bold text-4xl ">GALLERY</strong>{" "}
             </h1>
           </div>
-          <div className="flex  w-full">
+          <div className="flex w-full">
             <Gallery slides={slides} />
           </div>
-          <div className="w-[75vw]">
+          <div className="sm:w-[75vw]">
             <BlankBar title={"Description"} />
             <p className="ml-2">
               {" "}
@@ -214,21 +216,21 @@ const PropertyPage: React.FC<any> = () => {
               <Contact />
               <BlankBar title="Agent" />
               <Agent />
+              <BlankBar  />
             </div>
           </div>
           <BackToTopButton />
-          
         </div>
         <div className="flex flex-col items-center">
-        <span className="m-2 inline-block">
-        <Fab  color="inherit" variant='extended' aria-label="add">
-          <SearchIcon />
-          Search Property
-          </Fab>
-        </span>
           <SideFeaturedProperties properties={properties} />
         </div>
       </div>
+        <span className="m-4 sticky bottom-2 mx-auto inline-block">
+            <Fab color="inherit" variant="extended" aria-label="add">
+              <SearchIcon />
+              Search Property
+            </Fab>
+          </span>
       <Footer />
     </div>
   );

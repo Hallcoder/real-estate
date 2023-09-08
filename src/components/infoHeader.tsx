@@ -2,11 +2,11 @@ import logo from "../assets/logo-no-background.png";
 import { MdLocationPin,MdCall ,MdAccessTime} from "react-icons/md";
 function InfoHeader() {
   return (
-    <div className="flex md:flex md:flex-col sm:h-[10vh] sm:flex-col bg-[#333333] h-[18vh] max-w-[100%]">
-      <div className="flex items-center w-3/12 text-center">
-        <img src={logo} alt="" className="h-24 max-w-[100px] w-6/12 m-2 ml-6" />
+    <div className="flex  bg-[#333333] justify-center h-[18vh] max-w-[100%] infoHeader">
+      <div className="flex items-center sm:w-3/12 w-6/12 justify-center  text-center">
+        <img src={logo} alt="" className="h-24 text-center w-6/12 m-2 ml-6" />
       </div>
-      <article className="w-9/12 flex md:hidden sm:hidden justify-around">
+      <article className="w-9/12 sm:flex hidden  justify-around">
       <div className="flex justify-center items-center">
         <div>
           <MdLocationPin className="text-6xl text-[#D9C8B8]" />

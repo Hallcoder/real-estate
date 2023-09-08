@@ -3,7 +3,7 @@ function SearchableSelect(props:{options:Object[],placeholder:String}){
     return (
    <Select
    size="large"
-   className="m-4 w-48 border-black border text-black rounded-md"
+   className="m-4 flex border-black border text-black rounded-md"
    showSearch
    placeholder={props.placeholder} 
    optionFilterProp="children"

@@ -23,7 +23,7 @@ const Gallery:React.FC<{slides:any}> = ({ slides }) => {
   }, []);
 
   return (
-    <div className="gallery-container w-11/12 ml-2 rounded-md">
+    <div className="gallery-container w-full sm:w-11/12 sm:ml-2 rounded-md">
       <Splide
         options={{
           type: 'fade',

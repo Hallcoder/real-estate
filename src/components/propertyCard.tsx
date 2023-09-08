@@ -24,7 +24,7 @@ const PropertyCard: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div className={`flex flex-col ${width ? 'w-auto':'w-1/4'} rounded-md cursor-pointer m-6 shadow-md`} onClick={() => navigate('/propId')}>
+    <div className={`flex flex-col ${width ? 'w-auto':'sm:w-1/4'} rounded-md cursor-pointer m-6 shadow-md`} onClick={() => navigate('/propId')}>
       <div className="relative ">
         <img src={apartment} alt="apartment view" className="shadow-md" />
         <button className="bg-[#333333] p-3 w-7/12 text-white top-[87%] left-[21%] rounded-md absolute">

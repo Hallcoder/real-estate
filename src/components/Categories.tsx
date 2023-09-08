@@ -11,15 +11,15 @@ const Categories = () => {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-6 mt-20 mx-8 rounded-md">
+    <div className="sm:grid flex flex-wrap grid-cols-3 gap-6 mt-20 mx-8 rounded-md">
       {items.map((item, index) => (
         <div
           key={index}
           className={`${
             item.cols === 2 ? 'col-span-2' : 'col-span-1'
-          }`}
+          } `}
         >
-          <div className="relative cursor-pointer h-[60vh] m-2">
+          <div className="relative cursor-pointer sm:h-[60vh] m-2">
             <img src={item.image} alt="" className='object-fill transition-transform transform-gpu hover:scale-105 hover:shadow-lg hover:shadow-black shadow-gray-400 shadow-md rounded-[2%] h-full w-full'/>
             <p className='absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-4xl text-white'>{item.content}</p>
           </div>

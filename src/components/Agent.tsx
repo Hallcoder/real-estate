@@ -1,12 +1,12 @@
 import img from "../assets/agent.jpeg";
 function Agent() {
   return (
-    <div className="flex justify-around text-lg ">
+    <div className="sm:flex-row flex flex-col items-center justify-center sm:justify-around text-lg ">
       <img src={img} className="w-60 h-60 rounded-md m-2" alt="our agent" />
-      <div>
+      <div className="items-center flex flex-col">
         <h1 className="text-lg font-semibold text-[#333]">Mwenedata Apotre</h1>
         <span className="inline-block text-gray-400 mt-4">Mobile:</span> <span className="inline-block mt-4">+20791873565</span>
-        <p className="mt-4">
+        <p className="mt-4 w-8/12">
           Experienced real estate agent offering expert guidance, personalized
           service, and a deep knowledge of the local market to help you find
           your dream home or maximize the value of your property.

@@ -9,7 +9,7 @@ function About() {
  
   return (
     <div>
-      <main className="flex items-center flex-col">
+      <main className="flex flex-wrap items-center flex-col">
         <MdOutlineRealEstateAgent className="text-5xl mt-10" />
         <h2 className="text-center text-3xl my-12">
           <strong>Dream Homes</strong>, Crafting Your Dreams Into Reality!
@@ -29,7 +29,7 @@ function About() {
         <h2 className="my-12 text-3xl">
           <strong>Features & Services</strong>
         </h2>
-        <div className="flex text-xl justify-center gap-8 mx-6 cursor-pointer items-center">
+        <div className="flex text-xl flex-col sm:flex-row  justify-center gap-4 mx-6 cursor-pointer items-center">
           {services.map((serv, index) => {
             return <ServiceCard {...serv} key={index} />;
           })}
@@ -38,7 +38,7 @@ function About() {
           <h1>Our</h1>
           <strong>Agents</strong>
         </h2>
-        <div className="flex gap-24 m-2">
+        <div className="flex sm:gap-24 gap-4 m-2">
           {agents.map((agent, index) => {
             return <AgentCard {...agent} key={index} />;
           })}

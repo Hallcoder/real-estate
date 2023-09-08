@@ -2,73 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utility{
-  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
-  *{
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-size:18 rem;
+@layer utility {
+  @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
+  * {
+    font-family: 'Dosis', sans-serif;
   }
-  .bgImg{
-    position:relative;
-    background-image:url("./assets/hero-bg1.jpg");
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
+  .bgImg {
+    position: relative;
+    background-image: url("./assets/hero-bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     /* opacity:0.6; */
   }
   /* styles.css */
 
-/* Hide the webkit scrollbar */
-::-webkit-scrollbar {
-  width: 0.5em;
-  height: 0.5em;
-}
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color:white;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+  /* Hide the webkit scrollbar */
+  ::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 
-.back-to-top.visible {
-  opacity: 1;
-}
+  .back-to-top.visible {
+    opacity: 1;
+  }
 
-.back-to-top-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border:2px solid red;
-  background-color: orange;
-  color: white;
-  border-radius: 50%;
-  box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  font-size: 1.5rem;
-  transition: background-color 0.3s, transform 0.3s;
-}
+  .back-to-top-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 2px solid red;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+  }
 
-.back-to-top-button:hover {
-  background-color: #555;
-  transform: scale(1.1);
-}
+  .back-to-top-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 
   .darkened-image {
-  filter: brightness(70%);
-}
+    filter: brightness(70%);
+  }
 
- 
+  @media screen and (max-width: 639px) {
+    div {
+      border: 100px solid red;
+    }
+    .infoHeader {
+      background-color: white;
+      border: 10px solid blue;
+    }
+  }
 }

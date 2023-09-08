@@ -17,11 +17,11 @@ console.log(`Screen width in pixels: ${screenWidth}`);
   return (
     <div>
       <header>
-      <div className="h-4/6 w-full">
+      <div className="sm:h-4/6 h-full w-full">
         <Slideshow slides={slides} />
       </div>
       </header>
-      <p className="w-11/12 text-center m-16">
+      <p className="sm:w-10/12 w-full sm:ml-20 justify-center text-center my-16">
         Please use the tool below to help ease your property search. Choose your
         desired fields from the corresponding menu to go straight to your
         desired property options (for example: Type: Houses, Location: Any,

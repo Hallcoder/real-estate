@@ -27,7 +27,7 @@ const Slideshow = ({ slides }) => {
 
   const Slide = ({ image, title, description, buttonText }) => (
     <div className="relative h-[90vh] w-full">
-  <img src={image} alt={`Slide ${title}`} className="w-full h-[4/6] rounded-sm object-cover darkened-image" />
+  <img src={image} alt={`Slide ${title}`} className="w-full h-full rounded-sm object-cover darkened-image" />
   <div className="absolute bottom-4 left-0 right-0 text-white text-center">
     <h2 className="text-4xl font-semibold mb-2">{title}</h2>
     <p className="text-2xl mb-4">{description}</p>
@@ -46,7 +46,7 @@ const Slideshow = ({ slides }) => {
   
 
   return (
-    <div> {/* Wrap the slider in a container */}
+    <div className=''> {/* Wrap the slider in a container */}
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <Slide key={index} {...slide} />

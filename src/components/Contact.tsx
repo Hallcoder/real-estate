@@ -3,7 +3,7 @@ function Contact() {
   return (
     <div className="flex flex-col mt-10  justify-center">
       <h1 className='font-semibold text-xl m-8'>Contact Us about this property</h1>
-      <form action="" className='flex flex-col items-center gap-4 h-full w-4/6 ml-8'>
+      <form action="" className='flex flex-col items-center gap-4 mx-1 h-full sm:w-4/6 sm:ml-8'>
         <TextField className='w-full' id="standard-basic" label="Name" variant="outlined"  />
         <TextField className='w-full' id="standard-basic" label="Phone" type='string' variant="outlined" />
         <TextField className='w-full' id="standard-basic" label="Email" type='email' variant="outlined" />
