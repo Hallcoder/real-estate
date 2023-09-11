@@ -5,7 +5,7 @@ interface Props{
   name:string;
 }
 const TestimonialCard:React.FC<Props> = ({testimonial,occupation,name}) => {
-  return <figure className="rounded-xl p-8 text-lg">
+  return <figure className="rounded-xl w-1/4 p-4 text-lg">
   <div className="pt-6 text-center space-y-4">
   <BiSolidQuoteAltLeft className='text-5xl text-gray-500'/>
     <blockquote>

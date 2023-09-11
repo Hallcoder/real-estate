@@ -1,6 +1,7 @@
 import img from "../assets/apartment.jpg";
 import img2 from "../assets/Outlook.jpg";
 import agent from "../assets/agent.jpeg";
+import ImageUrlBuilder  from "@sanity/image-url";
 import { BiHome, BiDollarCircle } from 'react-icons/bi';
 import { MdLocationOn, MdSecurity } from 'react-icons/md';
 import {createClient} from '@sanity/client';
@@ -273,3 +274,8 @@ export const client = createClient({
   dataset:'production',
   useCdn:true
 })
+
+const builder = ImageUrlBuilder(client);
+export function buildImage(source){
+   return builder.image(source);
+ }

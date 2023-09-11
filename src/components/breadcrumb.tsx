@@ -12,7 +12,7 @@ const BreadCrumb: React.FC<Props> = ({name}) => {
   const navigate = useNavigate();
   return (
     <div className="flex text-xl text-white  font-bold cursor-pointer">
-      {breadcrumbData.map(br => <span onClick={() => navigate(br.pathname)} className="flex m-1"><p className="mr-1 hover:underline underline-orange-300">{br.label}</p>{" > "}</span>)}
+      {breadcrumbData.map((br,index) => <span key={index} onClick={() => navigate(br.pathname)} className="flex m-1"><p className="mr-1 hover:underline underline-orange-300">{br.label}</p>{" > "}</span>)}
     </div>
   );
 }

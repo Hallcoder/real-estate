@@ -5,8 +5,8 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'sizeInMeterSquare',
-      title: 'Size in Meter Square',
+      name: 'size',
+      title: 'Size',
       type: 'number',
       validation: (Rule) => Rule.required(),
     },
@@ -51,9 +51,33 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'nearbyFacilities',
-      title: 'Nearby Facilities',
-      type: 'string',
+      name: 'nearByFacilities',
+      title: 'NearByFacilities',
+      type: 'array',
+      of: [
+        {
+          name: 'facility',
+          title: 'Facility',
+          type: 'object',
+          fields: [
+            {
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'type',
+              title: 'Type',
+              type: 'string',
+              options: {
+                list: ['Health', 'Government service', 'Commerce', 'Religion', 'Education'],
+              },
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'image',
@@ -71,7 +95,7 @@ export default {
       name: 'additionalAmenities',
       title: 'Additional Amenities',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{type: 'string'}],
     },
     {
       name: 'category',
@@ -107,25 +131,31 @@ export default {
         },
         {
           name: 'city',
-          title: 'City',
+          title: 'City/Province',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
         {
-          name: 'state',
-          title: 'State',
-          type: 'string',
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: 'area',
-          title: 'Area',
+          name: 'street',
+          title: 'Street',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
         {
           name: 'country',
           title: 'Country',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'district',
+          title: 'District',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'sector',
+          title: 'Sector',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
@@ -141,7 +171,7 @@ export default {
       name: 'images',
       title: 'Images',
       type: 'array',
-      of: [{ type: 'image' }],
+      of: [{type: 'image'}],
     },
     {
       name: 'agentInfo',
@@ -152,6 +182,12 @@ export default {
           name: 'mobileNumber',
           title: 'Mobile Number',
           type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'image',
+          title: 'Image',
+          type: 'image',
           validation: (Rule) => Rule.required(),
         },
         {
@@ -175,5 +211,4 @@ export default {
       ],
     },
   ],
-};
- 
+}

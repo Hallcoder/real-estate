@@ -5,21 +5,41 @@ import PropertiesHeader from "../components/propertiesHeader";
 import Properties from "../components/properties";
 import CategoryProperty from "../components/CategoryProperty";
 import Categories from "../components/Categories";
+import { Audio } from "react-loader-spinner";
 import Slideshow from "../components/Slideshow";
-import { slides } from "../utils/constants";
+// import { Audio } from "react-loader-spinner";
+import { client, properties, slides } from "../utils/constants";
 import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
 
 function Home() {
-  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const screenWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
+  const [residentials, setResidentials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [apartments, setApartments] = useState([]);
+  useEffect(() => {
+    client.fetch("*[_type == 'property']").then((data) => {
+      setResidentials(data);
+      console.error("residentials", data);
+      setLoading(false);
+    });
+    client.fetch("*[_type == 'apartment']").then((data) => {
+      setApartments(data);
+      setLoading(false);
+    });
+  }, [loading]);
 
-// Log the width to the console
-console.log(`Screen width in pixels: ${screenWidth}`);
+  // Log the width to the console
+  console.log(`Screen width in pixels: ${screenWidth}`);
   return (
-    <div>
+    <div className="w-screen">
       <header>
-      <div className="sm:h-4/6 h-full w-full">
-        <Slideshow slides={slides} />
-      </div>
+        <div className="sm:h-4/6 h-full w-full">
+          <Slideshow slides={slides} />
+        </div>
       </header>
       <p className="sm:w-10/12 w-full sm:ml-20 justify-center text-center my-16">
         Please use the tool below to help ease your property search. Choose your
@@ -27,12 +47,14 @@ console.log(`Screen width in pixels: ${screenWidth}`);
         desired property options (for example: Type: Houses, Location: Any,
         Status: For Rent) to see all houses for rent that we have listed.
       </p>
-      <main id="#search" className="w-full">
+      <main className="w-full">
         <SearchHeader />
         <Search />
         <BlankBar />
         <PropertiesHeader />
-        <Properties />
+        {!loading ? <Properties properties={residentials} />:<div className="flex items-center justify-center">
+          <Audio color="black"/>
+        </div>}
         <CategoryProperty />
         <Categories />
         <Footer />

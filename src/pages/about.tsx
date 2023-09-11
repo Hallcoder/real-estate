@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 import Slideshow from "../components/Slideshow";
-import { agents,services, slides, testimonialData } from "../utils/constants";
+import { agents,properties,services, slides, testimonialData } from "../utils/constants";
 import ServiceCard from "../components/ServiceCard";
 import AgentCard from "../components/AgentCard";
 import TestimonialCard from "../components/testimonial";
@@ -23,7 +23,7 @@ function About() {
           Dream Homes difference and let us lead you on a journey to find your
           perfect home.
         </p>
-        <div className="sm:w-[100%]">
+        <div className="w-full">
           <Slideshow slides={slides} />
         </div>
         <h2 className="my-12 text-3xl">
@@ -46,7 +46,7 @@ function About() {
         <h2 className="my-20 text-4xl">
           <strong>Testimonials</strong>
         </h2>
-        <div className="flex flex-wrap w-full gap-2">
+        <div className="flex sm:flex-row flex-col justify-evenly flex-wrap w-full gap-1">
           {testimonialData.map((test,index)=>{
             return <TestimonialCard {...test} key={index}/>
           })}

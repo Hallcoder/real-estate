@@ -4,10 +4,10 @@ import img3 from '../assets/hero-bg1.jpg';
 
 const Categories = () => {
   const items = [
-    { content: 'Appartments', cols: 2, image:img1}, // This item will span 2 columns
-    { content: 'Commercial Properties', cols: 1, image:img2 },
-    { content: 'Plots of Land', cols: 1, image:img3 },
-    { content: 'Residential Homes', cols: 2, image:img1 },
+    { content: 'Apartments', cols: 2, image:img1}, // This item will span 2 columns
+    { content: 'Residential Properties', cols: 1, image:img2 },
+    { content: 'Hotels & Lodges', cols: 1, image:img3 },
+    { content: 'Offices', cols: 2, image:img1 },
   ];
 
   return (

@@ -5,6 +5,12 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
@@ -25,12 +31,6 @@ export default {
               validation: (Rule) => Rule.required(),
             },
             {
-              name: 'price',
-              title: 'Price',
-              type: 'number',
-              validation: (Rule) => Rule.required(),
-            },
-            {
               name: 'status',
               title: 'Status',
               type: 'string',
@@ -43,6 +43,7 @@ export default {
               title: 'Block Image',
               type: 'image', // Single image field for the block
             },
+
             {
               name: 'apartments',
               title: 'Apartments',
@@ -56,6 +57,12 @@ export default {
                       title: 'Apartment Number',
                       type: 'string',
                       validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name:"price",
+                      title:"Price",
+                      type:"number",
+                      validation: Rule => Rule.required()
                     },
                     {
                       name: 'apartmentImages',
@@ -137,25 +144,31 @@ export default {
         },
         {
           name: 'city',
-          title: 'City',
+          title: 'City/Province',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
         {
-          name: 'state',
-          title: 'State',
-          type: 'string',
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: 'area',
-          title: 'Area',
+          name: 'street',
+          title: 'Street',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
         {
           name: 'country',
           title: 'Country',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'sector',
+          title: 'Sector',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'district',
+          title: 'District',
           type: 'string',
           validation: (Rule) => Rule.required(),
         },
@@ -188,7 +201,7 @@ export default {
               title: 'Type',
               type: 'string',
               options: {
-                list: ['Health', 'Government service', 'Commerce', 'Religion'],
+                list: ['Health', 'Government service', 'Commerce', 'Religion','Education'],
               },
               validation: (Rule) => Rule.required(),
             },

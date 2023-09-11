@@ -61,11 +61,11 @@ const Gallery:React.FC<{slides:any}> = ({ slides }) => {
           ref={thumbnailSliderRef}
         >
           {slides.map((slide:any, index:number) => (
-            <SplideSlide key={index}>
+            <SplideSlide key={index}   className={"m-4"}>
               <img
                 src={slide.image}
                 alt={`Thumbnail ${index}`}
-                className={`thumbnail-image h-28 w-40 rounded-md cursor-pointer ${
+                className={`thumbnail-image h-28  w-40 rounded-md cursor-pointer ${
                   currentSlide === index ? 'border-2 border-blue-500' : 'border border-gray-300 brightness-50'
                 }`}
                 onClick={() => handleThumbnailClick(index)}

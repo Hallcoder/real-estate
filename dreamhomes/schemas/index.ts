@@ -1,9 +1,9 @@
-import property from "./residential";
 import office from "./office";
 import lodge from "./lodge";
 import apartment from "./apartment";
+import residential from "./residential";
 export const schemaTypes = [
-    property,
+    residential,
     office,
     lodge,
     apartment

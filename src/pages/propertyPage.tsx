@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CiGrid42 } from "react-icons/ci";
 import { AiFillPrinter } from "react-icons/ai";
+import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { client, properties, slides } from "../utils/constants";
+import { buildImage, client, properties, slides } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
@@ -32,17 +33,29 @@ import { Fab } from "@mui/material";
 import { useParams } from "react-router-dom";
 const PropertyPage: React.FC<any> = () => {
   const params = useParams();
-  // const [property,setProperty] = useState<any>();
+  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState<object[]>([]);
+  const [property, setProperty] = useState<any>({
+    name: "",
+    address: {},
+    images: [],
+    price: 0,
+    amenities: {},
+    agentInfo: {},
+    description: "",
+    status: "",
+  });
   useEffect(() => {
     client
-      .fetch(`*[_type == 'property' && _id ==${params.id}]`)
+      .fetch(`*[_type == 'property' && _id =='${params.id}']`)
       .then((data) => {
-        // setProperty(data);
+        setProperty(data[0]);
         console.log(data);
+        setLoading(false);
       });
   }, []);
   const MySwal = withReactContent(Swal);
-  // const {name,address,sizeInMeterSquare} = property;
+
   const OpenSharePopup = () => {
     MySwal.fire({
       title: <p>Share to your friends</p>,
@@ -88,20 +101,31 @@ const PropertyPage: React.FC<any> = () => {
       return MySwal.fire(<p>Sharing is Caring!</p>);
     });
   };
-
+  useEffect(() => {
+    let images:Array<object> = [];
+    for (var image of property.images) {
+      console.log(image)
+      images.push({
+        image: buildImage(image.asset._ref).url(),
+      });
+    }
+    setImages(images);
+    console.log(typeof property.images);
+  }, [property]);
   const nearby = ["hospital", "school", "restaurant"];
   // const params = useParams();
-  return (
+  return !loading ? (
     <div className="bgImg flex flex-col sm:h-screen bg-white">
-      <BreadCrumb name={"Kibagabaga"} />
+      <BreadCrumb name={property.name} />
       <p className="font-bold text-5xl flex items-center text-white m-8">
-        Kibagabaga Apartment
+        {property.name}
       </p>
       <div className="sm:flex-row flex-col flex bg-white">
         <div className="bg-white mt-5 w-full sm:w-9/12">
           <p className="text-lg m-2">
-            <strong>From $1300 -</strong> Apartment with good rooms nearby basic
-            infrastructure and home facilities provided./ For RENT
+            <strong>From ${property.price} -</strong> Apartment with good rooms
+            nearby basic infrastructure and home facilities provided./ For{" "}
+            <strong>{property.status.toUpperCase()}</strong>
           </p>
           <span className="flex justify-between my-4">
             <span className="flex">
@@ -123,21 +147,25 @@ const PropertyPage: React.FC<any> = () => {
               <span className="flex items-center">
                 <TbBath className="text-3xl" />
                 <span className="flex m-2 flex-col">
-                  <p className="font-semibold text-lg">4</p>
+                  <p className="font-semibold text-lg">
+                    {property.amenities.baths}
+                  </p>
                   <p>Baths</p>
                 </span>
               </span>
               <span className="flex items-center">
                 <TbBed className="text-3xl" />
                 <span className="flex m-2 flex-col">
-                  <p className="font-semibold text-lg">8</p>
+                  <p className="font-semibold text-lg">
+                    {property.amenities.bedrooms}
+                  </p>
                   <p>bedrooms</p>
                 </span>
               </span>
               <span className="flex items-center">
                 <CiGrid42 className="text-3xl" />
                 <span className="flex m-2 flex-col">
-                  <p className="font-semibold text-lg">1200</p>
+                  <p className="font-semibold text-lg">{property.size}</p>
                   <p>Sq M</p>
                 </span>
               </span>
@@ -155,68 +183,54 @@ const PropertyPage: React.FC<any> = () => {
             </h1>
           </div>
           <div className="flex w-full">
-            <Gallery slides={slides} />
+            <Gallery slides={images} />
           </div>
           <div className="sm:w-[75vw]">
             <BlankBar title={"Description"} />
             <p className="ml-2">
               {" "}
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis,
-              eos! Corporis reprehenderit nulla culpa, magni repudiandae iste
-              tempora, odio repellendus nesciunt molestiae itaque aliquid error
-              beatae, corrupti sunt tempore est.
-              <br />
-              <br /> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quisquam iste officiis reprehenderit a. Dicta incidunt, dolore
-              dolorum veritatis a dignissimos id possimus odit, neque, adipisci
-              dolores fuga quam at nostrum. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit.
-              <br />
-              <br /> Deleniti, distinctio dolor quidem laborum impedit veniam
-              nobis laudantium quo, asperiores omnis magnam ullam at optio a
-              architecto. Ullam fuga reprehenderit nulla.
+              {property.description}
             </p>
             <BlankBar title="Address" />
             <span className="flex w-3/6 justify-between my-10">
               <ul className="ml-4 text-lg">
                 <li>
-                  <strong className="font-semibold">Address: </strong>Kigali,
-                  Kibagabaga, Rwanda
+                  <strong className="font-semibold">Address: </strong>{property.address.fullAddress}
                 </li>
                 <li>
-                  <strong className="font-semibold">City: </strong>Kigali
+                  <strong className="font-semibold">City: </strong>{property.address.city}
                 </li>
                 <li>
-                  <strong className="font-semibold">District: </strong>Gasabo
+                  <strong className="font-semibold">District: </strong>{property.address.district}
                 </li>
                 <li>
-                  <strong className="font-semibold">Sector: </strong>Kibagabaga
+                  <strong className="font-semibold">Sector: </strong>{property.address.sector}
                 </li>
               </ul>
               <ul className="text-lg">
                 <li>
-                  <strong className="font-semibold">Road: </strong>KG 245 ST
+                  <strong className="font-semibold">Road: </strong>{property.address.street}
                 </li>
                 <li>
-                  <strong className="font-semibold">Zip: </strong>250
+                  <strong className="font-semibold">Zip: </strong>{property.address.zipCode}
                 </li>
               </ul>
             </span>
             {true && (
               <div>
                 <BlankBar title="What's Nearby" />
-                <NearBy nearby={nearby} />
+                <NearBy nearby={property.nearByFacilities} />
               </div>
             )}
             <div>
               <BlankBar title="Additional Features" />
-              <AdditionalFeatures />
+              <AdditionalFeatures additional={property.additionalAmenities}/>
             </div>
             <div>
               <Contact />
               <BlankBar title="Agent" />
-              <Agent />
-              <BlankBar  />
+              <Agent agentInfo={property.agentInfo}/>
+              <BlankBar />
             </div>
           </div>
           <BackToTopButton />
@@ -225,13 +239,21 @@ const PropertyPage: React.FC<any> = () => {
           <SideFeaturedProperties properties={properties} />
         </div>
       </div>
-        <span className="m-4 sticky bottom-2 mx-auto inline-block">
-            <Fab color="inherit" variant="extended" aria-label="add">
-              <SearchIcon />
-              Search Property
-            </Fab>
-          </span>
+      <span className="m-4 sticky bottom-2 mx-auto inline-block">
+        <Fab color="inherit" variant="extended" aria-label="add">
+          <SearchIcon />
+          Search Property
+        </Fab>
+      </span>
       <Footer />
+    </div>
+  ) : (
+    <div
+      className={
+        "flex items-center justify-center w-full mt-[10vh] sm:mt-[25vh]"
+      }
+    >
+      <Audio color="black" />
     </div>
   );
 };
