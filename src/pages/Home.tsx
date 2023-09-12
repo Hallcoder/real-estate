@@ -18,6 +18,7 @@ function Home() {
     document.documentElement.clientWidth ||
     document.body.clientWidth;
   const [residentials, setResidentials] = useState([]);
+  const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     client.fetch("*[_type == 'property']").then((data) => {
@@ -26,8 +27,9 @@ function Home() {
       setLoading(false);
     });
     client.fetch("*[_type == 'apartment']").then((data) => {
-      console.log(data)
-      setLoading(false);
+      console.log('Apartments',data)
+      setApartments(data);
+      setLoading(false);  
     });
   }, [loading]);
 
@@ -54,6 +56,9 @@ function Home() {
         {!loading ? <Properties properties={residentials} />:<div className="flex items-center justify-center">
           <Audio color="black"/>
         </div>}
+        {
+          !loading ? <Properties properties={apartments} />:<div className="flex items-center justify-center"><Audio color="black"/></div>
+        }
         <CategoryProperty />
         <Categories />
         <Footer />

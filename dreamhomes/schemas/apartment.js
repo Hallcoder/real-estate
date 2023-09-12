@@ -59,10 +59,10 @@ export default {
                       validation: (Rule) => Rule.required(),
                     },
                     {
-                      name:"price",
-                      title:"Price",
-                      type:"number",
-                      validation: Rule => Rule.required()
+                      name: 'price',
+                      title: 'Price',
+                      type: 'number',
+                      validation: (Rule) => Rule.required(),
                     },
                     {
                       name: 'apartmentImages',
@@ -181,6 +181,12 @@ export default {
       ],
     },
     {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'nearByFacilities',
       title: 'NearByFacilities',
       type: 'array',
@@ -201,7 +207,7 @@ export default {
               title: 'Type',
               type: 'string',
               options: {
-                list: ['Health', 'Government service', 'Commerce', 'Religion','Education'],
+                list: ['Health', 'Government service', 'Commerce', 'Religion', 'Education'],
               },
               validation: (Rule) => Rule.required(),
             },

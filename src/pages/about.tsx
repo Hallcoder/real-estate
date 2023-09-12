@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
 import Slideshow from "../components/Slideshow";
-import { agents,properties,services, slides, testimonialData } from "../utils/constants";
+import { agents,services, slides, testimonialData } from "../utils/constants";
 import ServiceCard from "../components/ServiceCard";
 import AgentCard from "../components/AgentCard";
 import TestimonialCard from "../components/testimonial";
