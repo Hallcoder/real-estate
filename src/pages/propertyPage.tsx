@@ -4,7 +4,7 @@ import { AiFillPrinter } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { buildImage, client, properties, slides } from "../utils/constants";
+import { buildImage, client, properties } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
@@ -112,7 +112,6 @@ const PropertyPage: React.FC<any> = () => {
     setImages(images);
     console.log(typeof property.images);
   }, [property]);
-  const nearby = ["hospital", "school", "restaurant"];
   // const params = useParams();
   return !loading ? (
     <div className="bgImg flex flex-col sm:h-screen bg-white">

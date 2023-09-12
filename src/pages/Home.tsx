@@ -8,7 +8,7 @@ import Categories from "../components/Categories";
 import { Audio } from "react-loader-spinner";
 import Slideshow from "../components/Slideshow";
 // import { Audio } from "react-loader-spinner";
-import { client, properties, slides } from "../utils/constants";
+import { client, slides } from "../utils/constants";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,6 @@ function Home() {
     document.body.clientWidth;
   const [residentials, setResidentials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [apartments, setApartments] = useState([]);
   useEffect(() => {
     client.fetch("*[_type == 'property']").then((data) => {
       setResidentials(data);
@@ -27,7 +26,7 @@ function Home() {
       setLoading(false);
     });
     client.fetch("*[_type == 'apartment']").then((data) => {
-      setApartments(data);
+      console.log(data)
       setLoading(false);
     });
   }, [loading]);
