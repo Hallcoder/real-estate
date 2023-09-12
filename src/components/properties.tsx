@@ -15,8 +15,8 @@ const Properties: React.FC<Props> = ({ properties }) => {
   // Define your breakpoints and the number of slides to show at each breakpoint
   const breakpoints = [
     { breakpoint: 1024, slidesToShow: 4 },
-    { breakpoint: 768, slidesToShow: 3 },
-    { breakpoint: 628, slidesToShow: 2 },
+    { breakpoint: 768, slidesToShow: 3},
+    { breakpoint: 632, slidesToShow: 2},
     { breakpoint: 400, slidesToShow: 1 },
   ];
 
@@ -56,14 +56,15 @@ const Properties: React.FC<Props> = ({ properties }) => {
   };
 
   return (
-    <div className="slider-container w-full border">
+    <div className="slider-container">
       <Slider {...settings}>
         {properties.map((prop, index) => {
-          console.log("One prop", prop);
+          console.log("One prop", properties);
           return (
             <PropertyCard
               image={buildImage(prop.image.asset._ref).url()}
               id={prop._id}
+              property={prop}
               className={true}
               name={prop.name}
               key={index}

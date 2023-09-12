@@ -11,6 +11,15 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name:"availability",
+      title:"Availability",
+      type:"string",
+      options:{
+        list:["Sold out","Rent out","Available"]
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'amenities',
       title: 'Amenities',
       type: 'object',

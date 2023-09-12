@@ -187,6 +187,24 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'availability',
+      title: 'Availability',
+      type: 'string',
+      options: {
+        list: ['Sold out', 'Rent out', 'Available'],
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: ['Rent', 'Sale'],
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'nearByFacilities',
       title: 'NearByFacilities',
       type: 'array',

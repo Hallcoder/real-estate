@@ -21,7 +21,8 @@ const Categories = () => {
         >
           <div className="relative cursor-pointer sm:h-[60vh] m-2">
             <img src={item.image} alt="" className='object-fill transition-transform transform-gpu hover:scale-105 hover:shadow-lg hover:shadow-black shadow-gray-400 shadow-md rounded-[2%] h-full w-full'/>
-            <p className='absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-4xl text-white'>{item.content}</p>
+            <p className='absolute w-2/6 bottom-[15%] left-[1%] font-semibold text-4xl text-white'>{item.content}</p>
+            <p className='absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-lg text-white'>4 properties</p>
           </div>
         </div>
       ))}

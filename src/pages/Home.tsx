@@ -31,7 +31,7 @@ function Home() {
       setApartments(data);
       setLoading(false);  
     });
-  }, [loading]);
+  }, []);
 
   // Log the width to the console
   console.log(`Screen width in pixels: ${screenWidth}`);

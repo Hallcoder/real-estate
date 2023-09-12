@@ -9,18 +9,25 @@ import Header from "./components/Header.tsx";
 import InfoHeader from "./components/infoHeader.tsx";
 import PropertyPage from "./pages/propertyPage.tsx";
 import ContactPage from "./pages/Contact.tsx";
+import React from "react";
+import BlockSelection from "./pages/BlockSelection.tsx";
+import ApartmentSelection from "./pages/ApartmentSelection.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
+  <React.StrictMode>
     <InfoHeader />
     <Header />
     <Routes>
       <Route path="/about" element={<About />} />
       <Route path="/buy" element={<Buy />} />
+      <Route path="/blockSelection/:id" element={<BlockSelection />}/>
       <Route path="/rent" element={<Rent />} />
       <Route path="/" element={<App />} />
+      <Route path="/apartmentSelection/:id/:blockNumber" element={<ApartmentSelection />}/>
       <Route path='/contact' element={<ContactPage /> }/>
       <Route path="/:id" element={<PropertyPage />} />
     </Routes>
+    </React.StrictMode>
   </BrowserRouter>
 );
