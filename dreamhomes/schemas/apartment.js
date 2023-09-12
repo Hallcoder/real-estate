@@ -69,6 +69,7 @@ export default {
                       title: 'Apartment Images',
                       type: 'array',
                       of: [{type: 'image'}], // Multiple images field for each apartment
+                      validation: Rule => Rule.required()
                     },
                     {
                       name: 'features',

@@ -26,7 +26,7 @@ const BlockSelection = () => {
   }, []);
 
   const handleClick = (blockNumber: any) => {
-    navigate(`/apartmentSelection/${blockNumber}/${params.id}`);
+    navigate(`/apartmentSelection/${params.id}/${blockNumber}`);
   };
   return !loading ? (
     <div className="sm:grid flex flex-wrap grid-cols-3 gap-6 mt-20 mx-8 rounded-md">

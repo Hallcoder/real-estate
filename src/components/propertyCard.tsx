@@ -39,6 +39,7 @@ const PropertyCard: React.FC<Props> = ({
     e.preventDefault();
     if(property._type == "apartment"){
      navigate(`/blockSelection/${property._id}`)
+     return;
     }
     navigate(`/${id}`);
   };
