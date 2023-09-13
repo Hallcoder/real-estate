@@ -8,6 +8,7 @@ function SideFeaturedProperties({ properties }) {
         const { amenities, name, size, price, location, status } = property;
         return (
           <PropertyCard
+            property={property}
             key={index}
             image={''}
             className={false}

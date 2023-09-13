@@ -1,6 +1,4 @@
 import { CiGrid42 } from "react-icons/ci";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { MdLocationPin, MdOutlineStarBorderPurple500 } from "react-icons/md";
 import { TbBed, TbBath } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
@@ -27,10 +25,8 @@ const PropertyCard: React.FC<Props> = ({
   amenities,
   name,
   id,
-  className,
   size,
   location,
-  width,
   property
 }) => {
   // const MySwal = withReactContent(Swal);
@@ -57,9 +53,8 @@ const PropertyCard: React.FC<Props> = ({
   };
   return (
     <div
-      className={`flex flex-col m-2 ${width ? "w-auto" : "sm:w-2/3"} border-4 ${
-        className && "slider-item"
-      } rounded-md min-h-fit h-[70vh] cursor-pointer  shadow-md`}
+      className={`flex flex-col border-4 
+       rounded-md min-h-fit min-w-full sm:min-w-[20vw] cursor-pointer shadow-md md:w-[20vw] w-[80vw] mx-auto sm:w-[20vw]`}
       onClick={(e) => handeClick(e,property)}
     >
       <div className="relative">
@@ -75,7 +70,7 @@ const PropertyCard: React.FC<Props> = ({
           </button>
         )}
       </div>
-      <div className="flex flex-col mt-10 justify-around items-center">
+      <div className="flex flex-col w-full mt-10 justify-around items-center">
         <p className="text-orange-500 font-bold m-1">For {status}</p>
         <p className="font-semibold text-lg m-2">{name}</p>
         <hr />
@@ -84,14 +79,14 @@ const PropertyCard: React.FC<Props> = ({
           {location}
         </p>
         <div className="w-full h-[1px] bg-gray-200 mb-2"></div>
-        <div className="flex justify-between w-full items-center p-3">
-          <div className="flex ml-2">
+        <div className="flex justify-around border w-full items-center">
+          <div className="flex sm:ml-2 w-4/12">
             <CiGrid42 />
             <p className="text-xs">
               <strong className="font-semibold">{size.toString()}</strong> Sq M
             </p>
           </div>
-          <button className="bg-white border-[#333333] border hover:text-white hover:bg-[#333333] p-4 text-xl rounded-full text-[#333333] font-semibold">
+          <button className="bg-white border-[#333333] border hover:text-white hover:bg-[#333333] p-4 text-xl  rounded-full text-[#333333] font-semibold">
             <MdOutlineStarBorderPurple500 />
           </button>
           {amenities && (

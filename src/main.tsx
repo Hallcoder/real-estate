@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes , Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import About from "./pages/about.tsx";
 import Buy from "./pages/buy.tsx";
@@ -16,20 +16,23 @@ import ApartmentPage from "./pages/ApartmentPage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-  <React.StrictMode>
+    {/* <React.StrictMode> */}
     <InfoHeader />
     <Header />
     <Routes>
       <Route path="/about" element={<About />} />
       <Route path="/buy" element={<Buy />} />
-      <Route path="/blockSelection/:id" element={<BlockSelection />}/>
+      <Route path="/blockSelection/:id" element={<BlockSelection />} />
       <Route path="/rent" element={<Rent />} />
-      <Route path='/apartment/:blockNumber' element={<ApartmentPage />}/>
+      <Route path="/apartment/:blockNumber" element={<ApartmentPage />} />
       <Route path="/" element={<App />} />
-      <Route path="/apartmentSelection/:id/:blockNumber" element={<ApartmentSelection />}/>
-      <Route path='/contact' element={<ContactPage /> }/>
+      <Route
+        path="/apartmentSelection/:id/:blockNumber"
+        element={<ApartmentSelection />}
+      />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/:id" element={<PropertyPage />} />
     </Routes>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </BrowserRouter>
 );

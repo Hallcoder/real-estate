@@ -15,7 +15,7 @@ function ApartmentSelection() {
       localStorage.getItem("breadCrumbData") as string
     );
     breadcrumbData.push({
-      label: item.apartmentNumber,
+      label: `Apartment ${item.apartmentNumber}`,
       link: `/apartment/${params.blockNumber}`,
     });
     localStorage.setItem(
@@ -37,6 +37,7 @@ function ApartmentSelection() {
         JSON.stringify([...new Set(breadCrumbData)])
       );
     };
+    
     client
       .fetch(`*[_type == 'apartment' && _id == '${params.id}']`)
       .then((data) => {
@@ -55,9 +56,9 @@ function ApartmentSelection() {
   }, []);
 
   return !loading ? (
-    <div className="flex flex-col items-center w-full flex-wrap mt-10  rounded-md">
+    <div className="flex flex-col items-center w-full flex-wrap mt-10rounded-md">
       <h1 className="mx-auto my-2 text-3xl font-bold">Select an apartment</h1>
-      <div className="flex items-center sm:flex-row flex-col h-full justify-center">
+      <div className="flex items-center w-full sm:flex-row flex-col h-full justify-center">
         {apartments.map((item, index) => (
           <div
             key={index}

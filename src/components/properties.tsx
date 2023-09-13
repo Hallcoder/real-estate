@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import PropertyCard from "./propertyCard";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Splide } from "@splidejs/react-splide";
 import { buildImage } from "../utils/constants";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 interface Props {
   properties: any[];
+  propertyType?: "residential" | "apartment";
 }
 
-const Properties: React.FC<Props> = ({ properties }) => {
-  console.log("Properties", properties.length);
+const Properties: React.FC<Props> = ({ properties, propertyType }) => {
+  console.log("Properties", properties.length, propertyType);
   const [slidesToShow, setSlidesToShow] = useState(1); // Default number of slides to show
 
   // Define your breakpoints and the number of slides to show at each breakpoint
   const breakpoints = [
     { breakpoint: 1024, slidesToShow: 4 },
-    { breakpoint: 768, slidesToShow: 3},
-    { breakpoint: 632, slidesToShow: 2},
+    { breakpoint: 768, slidesToShow: 3 },
+    { breakpoint: 632, slidesToShow: 2 },
     { breakpoint: 400, slidesToShow: 1 },
   ];
 
@@ -54,29 +54,24 @@ const Properties: React.FC<Props> = ({ properties }) => {
     autoplay: true, // Enable automatic sliding
     autoplaySpeed: 2000, // Duration for automatic sliding (2 seconds in this example)
   };
-
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
-        {properties.map((prop, index) => {
-          return (
-            <PropertyCard
-              image={buildImage(prop.image.asset._ref).url()}
-              id={prop._id}
-              property={prop}
-              className={true}
-              name={prop.name}
-              key={index}
-              width="here"
-              location={prop.address.fullAddress}
-              size={prop.size}
-              status={prop.status}
-              price={prop.price}
-              amenities={prop.amenities}
-            />
-          );
-        })}
-      </Slider>
+    <div className="flex flex-row gap-4  w-full sm:w-11/12 mx-auto overflow-x-scroll">
+      {properties.concat(properties).concat(properties).map((prop, index) => {
+        return <PropertyCard
+        image={buildImage(prop.image.asset._ref).url()}
+        id={prop._id}
+        property={prop}
+        className={true}
+        name={prop.name}
+        width="here"
+        key={index}
+        location={prop.address.fullAddress}
+        size={prop.size}
+        status={prop.status}
+        price={prop.price}
+        amenities={prop.amenities}
+      />
+      })}
     </div>
   );
 };

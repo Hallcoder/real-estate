@@ -36,13 +36,33 @@ const ApartmentPage: React.FC<any> = () => {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<object[]>([]);
   const [apartment, setApartment] = useState<any>();
+  const [property, setProperty] = useState<any>();
   useEffect(() => {
-    let apart = JSON.parse(
-      localStorage.getItem("currentApartment") as string
-    );
+    const handlePopstate = (e) => {
+      e.preventDefault();
+      let breadCrumbData = JSON.parse(
+        localStorage.getItem("breadCrumbData") as string
+      );
+      breadCrumbData.pop();
+      localStorage.setItem(
+        "breadCrumbData",
+        JSON.stringify([...new Set(breadCrumbData)])
+      );
+    };
+
+    let apart = JSON.parse(localStorage.getItem("currentApartment") as string);
     setApartment(apart);
-    console.log(apartment)
+    let property = JSON.parse(
+      localStorage.getItem("currentProperty") as string
+    );
+    setProperty(property);
     setLoading(false);
+    
+    window.addEventListener('popstate', handlePopstate);
+  
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
   }, []);
   const MySwal = withReactContent(Swal);
 
@@ -92,14 +112,17 @@ const ApartmentPage: React.FC<any> = () => {
     });
   };
   useEffect(() => {
-    let images: Array<object> = [];
-    for (var image of apartment.apartmentImages) {
-      console.log(image);
-      images.push({
-        image: buildImage(image.asset._ref).url(),
-      });
+    console.log("gpt here", apartment);
+    if (apartment) {
+      let images: Array<object> = [];
+      for (var image of apartment.apartmentImages) {
+        console.log(image);
+        images.push({
+          image: buildImage(image.asset._ref).url(),
+        });
+      }
+      setImages(images);
     }
-    setImages(images);
   }, [apartment]);
   // const params = useParams();
   return !loading ? (
@@ -110,7 +133,10 @@ const ApartmentPage: React.FC<any> = () => {
         )}
       />
       <p className="font-bold text-5xl flex items-center text-white m-8">
-        {params.blockNumber + " " + apartment.apartmentNumber}
+        {"Block " +
+          params.blockNumber +
+          " Apartment" +
+          apartment.apartmentNumber}
       </p>
       <div className="sm:flex-row flex-col flex bg-white">
         <div className="bg-white mt-5 w-full sm:w-9/12">
@@ -205,7 +231,7 @@ const ApartmentPage: React.FC<any> = () => {
                 </li>
               </ul>
             </span> */}
-            {true && (
+            {apartment.nearByFacilities && (
               <div>
                 <BlankBar title="What's Nearby" />
                 <NearBy nearby={property.nearByFacilities} />
@@ -213,7 +239,9 @@ const ApartmentPage: React.FC<any> = () => {
             )}
             <div>
               <BlankBar title="Additional Features" />
-              <AdditionalFeatures additional={property.additionalAmenities} />
+              <AdditionalFeatures
+                additional={Object.keys(apartment.features)}
+              />
             </div>
             <div>
               <Contact />

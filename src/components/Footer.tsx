@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 p-12 text-3xl mt-40 text-white">
+    <footer className="bg-gray-800 w-full p-12 text-3xl mt-40 text-white">
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mb-6 md:mb-0 text-center">
           <h3 className="text-3xl font-semibold mb-2">Quick Links</h3>
