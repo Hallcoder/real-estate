@@ -37,7 +37,19 @@ const PropertyCard: React.FC<Props> = ({
   const navigate = useNavigate();
   const handeClick = (e: any,property:any) => {
     e.preventDefault();
+    let breadCrumbData: any[] = [];
+        if (JSON.parse(localStorage.getItem("breadCrumbData") as string)) {
+          breadCrumbData = JSON.parse(
+            localStorage.getItem("breadCrumbData") as string
+          );
+        }
+        breadCrumbData.push({ label: property.name, link: `/${property._id}` });
+        localStorage.setItem(
+          "breadCrumbData",
+          JSON.stringify([...new Set(breadCrumbData)])
+        );
     if(property._type == "apartment"){
+     localStorage.setItem("currentProperty",JSON.stringify(property));
      navigate(`/blockSelection/${property._id}`)
      return;
     }

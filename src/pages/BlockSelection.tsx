@@ -16,59 +16,86 @@ const BlockSelection = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    const handlePopstate = (e) => {
+      e.preventDefault();
+      let breadCrumbData = JSON.parse(
+        localStorage.getItem("breadCrumbData") as string
+      );
+      breadCrumbData.pop();
+      localStorage.setItem("breadCrumbData", JSON.stringify([...new Set(breadCrumbData)]));
+    };
+  
     client
       .fetch(`*[_type == 'apartment' && _id == '${params.id}']`)
       .then((data) => {
-        console.log("blocks", data[0]);
         setProperty(data[0]);
         setLoading(false);
       });
+  
+    window.addEventListener('popstate', handlePopstate);
+  
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
   }, []);
+  
+
 
   const handleClick = (blockNumber: any) => {
+    let breadCrumbData = JSON.parse(
+      localStorage.getItem("breadCrumbData") as string
+    );
+    breadCrumbData.push({
+      label: `Block ${blockNumber}`,
+      link: `/blockSelection/${params.id}`,
+    });
+    localStorage.setItem("breadCrumbData",JSON.stringify([...new Set(breadCrumbData)]));
     navigate(`/apartmentSelection/${params.id}/${blockNumber}`);
   };
   return !loading ? (
-    <div className="sm:grid flex flex-wrap grid-cols-3 gap-6 mt-20 mx-8 rounded-md">
+    <div className="flex flex-col flex-wra gap-6 rounded-md">
       <h1 className="mx-auto text-3xl font-bold">Select a block</h1>
-      {property.blocks.map(
-        (
-          item: {
-            blockNumber:
-              | string
-              | number
-              | boolean
-              | ReactElement<any, string | JSXElementConstructor<any>>
-              | Iterable<ReactNode>
-              | ReactPortal
-              | null
-              | undefined;
-            blockImage: { asset: { _ref: any } };
-            apartments: string | any[];
-          },
-          index: Key | null | undefined
-        ) => (
-          <div
-            key={index}
-            className={`col-span-2`}
-            onClick={() => handleClick(item.blockNumber)}
-          >
-            <div className="relative cursor-pointer sm:h-[60vh] m-2">
-              <img
-                src={buildImage(item.blockImage.asset._ref).url()}
-                alt=""
-                className="object-fill transition-transform transform-gpu hover:scale-105 hover:shadow-lg hover:shadow-black brightness-75 shadow-gray-400 shadow-md rounded-[2%] h-full w-full"
-              />
-              <p className="absolute w-2/6 bottom-[15%] left-[1%] font-semibold text-4xl text-white">
-                Block {item.blockNumber}
-              </p>
-              <p className="absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-lg text-white">
-                {item.apartments.length} apartments
-              </p>
+      <div className="flex justify-center">
+        {" "}
+        {property.blocks.map(
+          (
+            item: {
+              blockNumber:
+                | string
+                | number
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | Iterable<ReactNode>
+                | ReactPortal
+                | null
+                | undefined;
+              blockImage: { asset: { _ref: any } };
+              apartments: string | any[];
+            },
+            index: Key | null | undefined
+          ) => (
+            <div
+              key={index}
+              className={``}
+              onClick={() => handleClick(item.blockNumber)}
+            >
+              <div className="relative cursor-pointer h-auto sm:h-[40vh] m-2">
+                <img
+                  src={buildImage(item.blockImage.asset._ref).url()}
+                  alt=""
+                  className="object-fill transition-transform transform-gpu hover:scale-105 hover:shadow-lg hover:shadow-black brightness-75 shadow-gray-400 shadow-md rounded-[2%] h-full w-full"
+                />
+                <p className="absolute w-2/6 bottom-[15%] left-[1%] font-semibold text-4xl text-white">
+                  Block {item.blockNumber}
+                </p>
+                <p className="absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-lg text-white">
+                  {item.apartments.length} apartments
+                </p>
+              </div>
             </div>
-          </div>
-        )
-      )}
+          )
+        )}
+      </div>
     </div>
   ) : (
     <div className="flex items-center justify-center mt-[18vh]">

@@ -59,7 +59,6 @@ const Properties: React.FC<Props> = ({ properties }) => {
     <div className="slider-container">
       <Slider {...settings}>
         {properties.map((prop, index) => {
-          console.log("One prop", properties);
           return (
             <PropertyCard
               image={buildImage(prop.image.asset._ref).url()}

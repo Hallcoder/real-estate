@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-no-background.png";
 import { MdLocationPin,MdCall ,MdAccessTime} from "react-icons/md";
 function InfoHeader() {
+  const navigate = useNavigate();
   return (
-    <div className="flex  bg-[#333333] justify-center h-[18vh] max-w-[100%] infoHeader">
-      <div className="flex items-center sm:w-3/12 w-6/12 justify-center  text-center">
+    <div className="flex bg-[#333333] justify-center w-screen h-[18vh] max-w-[100%]">
+      <div className="flex items-center sm:w-3/12 w-6/12 justify-center  text-center" onClick={() => navigate("/")}>
         <img src={logo} alt="" className="h-24 text-center w-6/12 m-2 ml-6" />
       </div>
       <article className="w-9/12 sm:flex hidden  justify-around">

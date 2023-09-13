@@ -69,13 +69,4 @@
     filter: brightness(70%);
   }
 
-  @media screen and (max-width: 639px) {
-    div {
-      border: 100px solid red;
-    }
-    .infoHeader {
-      background-color: white;
-      border: 10px solid blue;
-    }
-  }
 }

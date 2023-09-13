@@ -51,9 +51,11 @@ const PropertyPage: React.FC<any> = () => {
       .then((data) => {
         setProperty(data[0]);
         console.log(data);
-        setLoading(false);
+        setLoading(false);       
       });
   }, []);
+
+  // useEffect(() => {}, []);
   const MySwal = withReactContent(Swal);
 
   const OpenSharePopup = () => {
@@ -102,9 +104,9 @@ const PropertyPage: React.FC<any> = () => {
     });
   };
   useEffect(() => {
-    let images:Array<object> = [];
+    let images: Array<object> = [];
     for (var image of property.images) {
-      console.log(image)
+      console.log(image);
       images.push({
         image: buildImage(image.asset._ref).url(),
       });
@@ -115,7 +117,11 @@ const PropertyPage: React.FC<any> = () => {
   // const params = useParams();
   return !loading ? (
     <div className="bgImg flex flex-col sm:h-screen bg-white">
-      <BreadCrumb name={property.name} />
+      <BreadCrumb
+        breadCrumbData={JSON.parse(
+          localStorage.getItem("breadCrumbData") as string
+        )}
+      />
       <p className="font-bold text-5xl flex items-center text-white m-8">
         {property.name}
       </p>
@@ -186,32 +192,35 @@ const PropertyPage: React.FC<any> = () => {
           </div>
           <div className="sm:w-[75vw]">
             <BlankBar title={"Description"} />
-            <p className="ml-2">
-              {" "}
-              {property.description}
-            </p>
+            <p className="ml-2"> {property.description}</p>
             <BlankBar title="Address" />
             <span className="flex w-3/6 justify-between my-10">
               <ul className="ml-4 text-lg">
                 <li>
-                  <strong className="font-semibold">Address: </strong>{property.address.fullAddress}
+                  <strong className="font-semibold">Address: </strong>
+                  {property.address.fullAddress}
                 </li>
                 <li>
-                  <strong className="font-semibold">City: </strong>{property.address.city}
+                  <strong className="font-semibold">City: </strong>
+                  {property.address.city}
                 </li>
                 <li>
-                  <strong className="font-semibold">District: </strong>{property.address.district}
+                  <strong className="font-semibold">District: </strong>
+                  {property.address.district}
                 </li>
                 <li>
-                  <strong className="font-semibold">Sector: </strong>{property.address.sector}
+                  <strong className="font-semibold">Sector: </strong>
+                  {property.address.sector}
                 </li>
               </ul>
               <ul className="text-lg">
                 <li>
-                  <strong className="font-semibold">Road: </strong>{property.address.street}
+                  <strong className="font-semibold">Road: </strong>
+                  {property.address.street}
                 </li>
                 <li>
-                  <strong className="font-semibold">Zip: </strong>{property.address.zipCode}
+                  <strong className="font-semibold">Zip: </strong>
+                  {property.address.zipCode}
                 </li>
               </ul>
             </span>
@@ -223,12 +232,12 @@ const PropertyPage: React.FC<any> = () => {
             )}
             <div>
               <BlankBar title="Additional Features" />
-              <AdditionalFeatures additional={property.additionalAmenities}/>
+              <AdditionalFeatures additional={property.additionalAmenities} />
             </div>
             <div>
               <Contact />
               <BlankBar title="Agent" />
-              <Agent agentInfo={property.agentInfo}/>
+              <Agent agentInfo={property.agentInfo} />
               <BlankBar />
             </div>
           </div>

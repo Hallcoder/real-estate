@@ -31,12 +31,14 @@ function Home() {
       setApartments(data);
       setLoading(false);  
     });
+  let breadCrumbData = [{label:'Home',link:'/'}];
+  localStorage.setItem('breadCrumbData',JSON.stringify([...new Set(breadCrumbData)]));
   }, []);
 
   // Log the width to the console
   console.log(`Screen width in pixels: ${screenWidth}`);
   return (
-    <div className="w-screen">
+    <div className="overflow-hidden">
       <header>
         <div className="sm:h-4/6 h-full w-full">
           <Slideshow slides={slides} />
