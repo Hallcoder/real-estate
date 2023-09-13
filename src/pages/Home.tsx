@@ -13,37 +13,31 @@ import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 
 function Home() {
-  const screenWidth =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
   const [residentials, setResidentials] = useState([]);
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  var properties=[];
-  var res=[];
-  useEffect(() => {    
-      client.fetch("*[_type == 'property']").then((data) => {
-        setResidentials(data);
-        properties = data;
-        console.error("residentials", data);
-        setLoading(false);
-      });
-      client.fetch("*[_type == 'apartment']").then((data) => {
-        console.log("Apartments", data);
-        res = data;
-        setApartments(data);
-        setLoading(false);
-      });
-      let breadCrumbData = [{ label: "Home", link: "/" }];
-      localStorage.setItem(
-        "breadCrumbData",
-        JSON.stringify([...new Set(breadCrumbData)])
-      );
+  var properties = [];
+  var res = [];
+  useEffect(() => {
+    client.fetch("*[_type == 'property']").then((data) => {
+      setResidentials(data);
+      properties = data;
+      console.error("residentials", data);
+      setLoading(false);
+    });
+    client.fetch("*[_type == 'apartment']").then((data) => {
+      console.log("Apartments", data);
+      res = data;
+      setApartments(data);
+      setLoading(false);
+    });
+    let breadCrumbData = [{ label: "Home", link: "/" }];
+    localStorage.setItem(
+      "breadCrumbData",
+      JSON.stringify([...new Set(breadCrumbData)])
+    );
   }, []);
 
-  // Log the width to the console
-  console.log(`Screen width in pixels: ${screenWidth}`);
   return (
     <div className="overflow-hidden">
       <header>
@@ -63,20 +57,22 @@ function Home() {
         <BlankBar />
         <PropertiesHeader />
         {!loading ? (
-          <Properties properties={residentials} propertyType="residential"/>
+          <Properties properties={residentials} propertyType="residential" />
         ) : (
           <div className="flex items-center justify-center">
             <Audio color="black" />
           </div>
         )}
-        <h5 className="text-center m-2 animate-bounce">Swipe <strong>&larr;</strong> or <strong>&rarr;</strong> to scroll </h5>
-        {!loading ? ( 
-          <Properties properties={apartments} propertyType="apartment"/>
-         ) : (
-           <div className="flex items-center justify-center">
-             <Audio color="black" />
-           </div>
-         )} 
+        <h5 className="text-center m-2 animate-bounce">
+          Swipe <strong>&larr;</strong> or <strong>&rarr;</strong> to scroll{" "}
+        </h5>
+        {!loading ? (
+          <Properties properties={apartments} propertyType="apartment" />
+        ) : (
+          <div className="flex items-center justify-center">
+            <Audio color="black" />
+          </div>
+        )}
         <CategoryProperty />
         <Categories />
         <Footer />

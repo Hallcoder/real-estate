@@ -15,7 +15,7 @@ type Props = {
   width?: string;
   image: string;
   className: boolean;
-  property:any;
+  property: any;
   [key: string]: string | boolean | Number | object | undefined;
 };
 const PropertyCard: React.FC<Props> = ({
@@ -27,27 +27,34 @@ const PropertyCard: React.FC<Props> = ({
   id,
   size,
   location,
-  property
+  property,
 }) => {
   // const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
-  const handeClick = (e: any,property:any) => {
+  const handeClick = (e: any, property: any) => {
     e.preventDefault();
     let breadCrumbData: any[] = [];
-        if (JSON.parse(localStorage.getItem("breadCrumbData") as string)) {
-          breadCrumbData = JSON.parse(
-            localStorage.getItem("breadCrumbData") as string
-          );
-        }
-        breadCrumbData.push({ label: property.name, link: `/${property._id}` });
-        localStorage.setItem(
-          "breadCrumbData",
-          JSON.stringify([...new Set(breadCrumbData)])
-        );
-    if(property._type == "apartment"){
-     localStorage.setItem("currentProperty",JSON.stringify(property));
-     navigate(`/blockSelection/${property._id}`)
-     return;
+    if (JSON.parse(localStorage.getItem("breadCrumbData") as string)) {
+      breadCrumbData = JSON.parse(
+        localStorage.getItem("breadCrumbData") as string
+      );
+    }
+    if (property._type == "apartment") {
+      breadCrumbData.push({
+        label: property.name,
+        link: `/blockSelection/${property._id}`,
+      });
+    } else {
+      breadCrumbData.push({ label: property.name, link: `/${property._id}` });
+    }
+    localStorage.setItem(
+      "breadCrumbData",
+      JSON.stringify([...new Set(breadCrumbData)])
+    );
+    if (property._type == "apartment") {
+      localStorage.setItem("currentProperty", JSON.stringify(property));
+      navigate(`/blockSelection/${property._id}`);
+      return;
     }
     navigate(`/${id}`);
   };
@@ -55,7 +62,7 @@ const PropertyCard: React.FC<Props> = ({
     <div
       className={`flex flex-col border-4 
        rounded-md min-h-fit min-w-full sm:min-w-[20vw] cursor-pointer shadow-md md:w-[20vw] w-[80vw] mx-auto sm:w-[20vw]`}
-      onClick={(e) => handeClick(e,property)}
+      onClick={(e) => handeClick(e, property)}
     >
       <div className="relative">
         <img
