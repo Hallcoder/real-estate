@@ -1,4 +1,4 @@
-// schemas/property.js
+// schemas/residential.js
 export default {
   name: 'property',
   title: 'Property',

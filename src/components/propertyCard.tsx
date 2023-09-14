@@ -42,7 +42,7 @@ const PropertyCard: React.FC<Props> = ({
   };
   return (
     <div
-      className={`flex flex-col border-4 
+      className={`flex flex-col 
        rounded-md min-h-fit min-w-full sm:min-w-[20vw] cursor-pointer shadow-md md:w-[20vw] w-[80vw] mx-auto sm:w-[20vw]`}
       onClick={(e) => handeClick(e, property)}
     >

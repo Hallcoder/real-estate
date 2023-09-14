@@ -19,8 +19,9 @@
 
   /* Hide the webkit scrollbar */
   ::-webkit-scrollbar {
-    width: 0.5em;
-    height: 0.5em;
+    width: 0.2em;
+    margin:10px;
+    height: 0.23em;
   }
   .back-to-top {
     position: fixed;
@@ -58,11 +59,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: gray;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: #e9eef7;
   }
 
   .darkened-image {

@@ -9,7 +9,7 @@ interface Props {
 const Properties: React.FC<Props> = ({ properties, propertyType }) => {
   console.log("Properties", properties.length, propertyType);
   return (
-    <div className="flex flex-row gap-4  w-full sm:w-11/12 mx-auto overflow-x-scroll">
+    <div className="flex flex-row gap-4 py-4 w-full sm:w-11/12 mx-auto  drop-shadow-lg overflow-x-scroll">
       {properties
         .concat(properties)
         .concat(properties)
