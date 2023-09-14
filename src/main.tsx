@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Route path="/buy" element={<Buy />} />
       <Route path="/blockSelection/:id" element={<BlockSelection />} />
       <Route path="/rent" element={<Rent />} />
-      <Route path="/apartment/:blockNumber" element={<ApartmentPage />} />
+      <Route path="/apartment/:blockNumber/:apartmentNumber" element={<ApartmentPage />} />
       <Route path="/" element={<App />} />
       <Route
         path="/apartmentSelection/:id/:blockNumber"

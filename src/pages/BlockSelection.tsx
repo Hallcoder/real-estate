@@ -16,40 +16,15 @@ const BlockSelection = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    const handlePopstate = (e) => {
-      e.preventDefault();
-      let breadCrumbData = JSON.parse(
-        localStorage.getItem("breadCrumbData") as string
-      );
-      breadCrumbData.pop();
-      localStorage.setItem("breadCrumbData", JSON.stringify([...new Set(breadCrumbData)]));
-    };
-  
     client
       .fetch(`*[_type == 'apartment' && _id == '${params.id}']`)
       .then((data) => {
         setProperty(data[0]);
         setLoading(false);
       });
-  
-    window.addEventListener('popstate', handlePopstate);
-  
-    return () => {
-      window.removeEventListener('popstate', handlePopstate);
-    };
   }, []);
-  
-
 
   const handleClick = (blockNumber: any) => {
-    let breadCrumbData = JSON.parse(
-      localStorage.getItem("breadCrumbData") as string
-    );
-    breadCrumbData.push({
-      label: `Block ${blockNumber}`,
-      link: `/blockSelection/${params.id}`,
-    });
-    localStorage.setItem("breadCrumbData",JSON.stringify([...new Set(breadCrumbData)]));
     navigate(`/apartmentSelection/${params.id}/${blockNumber}`);
   };
   return !loading ? (

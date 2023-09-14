@@ -3,7 +3,7 @@ import { buildImage, client } from "../utils/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { Hourglass } from "react-loader-spinner";
 import Footer from "../components/Footer";
-
+import Prompt from "react-router-dom";
 function ApartmentSelection() {
   const [loading, setLoading] = useState(true);
   const params = useParams();
@@ -14,30 +14,34 @@ function ApartmentSelection() {
     let breadcrumbData = JSON.parse(
       localStorage.getItem("breadCrumbData") as string
     );
-    breadcrumbData.push({
-      label: `Apartment ${item.apartmentNumber}`,
-      link: `/apartment/${params.blockNumber}`,
-    });
-    localStorage.setItem(
-      "breadCrumbData",
-      JSON.stringify([...new Set(breadcrumbData)])
-    );
-    navigate(`/apartment/${params.blockNumber}`);
+    // var equality = false;
+    // for (var breadCrumb of breadcrumbData) {
+    //   if (
+    //     breadCrumb.label == `Apartment ${item.apartmentNumber}` &&
+    //     breadCrumb.link == `/apartment/${params.blockNumber}`
+    //   ) {
+    //     equality = true;
+    //     break;
+    //   } else {
+    //     continue;
+    //   }
+    // }
+    // if (!equality) {
+    //   breadcrumbData.push({
+    //     label: `Apartment ${item.apartmentNumber}`,
+    //     link: `/apartment/${params.blockNumber}`,
+    //   });
+    //   localStorage.setItem(
+    //     "breadCrumbData",
+    //     JSON.stringify([...new Set(breadcrumbData)])
+    //   );
+    // }
+    // equality = false;
+
+    navigate(`/apartment/${params.blockNumber}/${item.apartmentNumber}`);
   };
 
   useEffect(() => {
-    const handlePopstate = (e) => {
-      e.preventDefault();
-      let breadCrumbData = JSON.parse(
-        localStorage.getItem("breadCrumbData") as string
-      );
-      breadCrumbData.pop();
-      localStorage.setItem(
-        "breadCrumbData",
-        JSON.stringify([...new Set(breadCrumbData)])
-      );
-    };
-    
     client
       .fetch(`*[_type == 'apartment' && _id == '${params.id}']`)
       .then((data) => {
@@ -49,10 +53,7 @@ function ApartmentSelection() {
         }
         setLoading(false);
       });
-    window.addEventListener("popstate", handlePopstate);
-    return () => {
-      window.removeEventListener("popstate", handlePopstate);
-    };
+ 
   }, []);
 
   return !loading ? (

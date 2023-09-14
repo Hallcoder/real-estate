@@ -123,13 +123,18 @@ const ApartmentPage: React.FC<any> = () => {
       setImages(images);
     }
   }, [apartment]);
+  const getBreadCrumbData = () => {
+    let data:any[] = JSON.parse(localStorage.getItem('breadCrumbData') as string);
+    data.push({label:property.name,link:`/blockSelection/${property._id}`});
+    data.push({label:`Block ${params.blockNumber}`,link:`/blockSelection/${property._id}`});
+    data.push({label:`Apartment ${params.apartmentNumber}`,link:`/apartmentSelection/${property._id}/${params.blockNumber}`});
+    return data;
+  }
   // const params = useParams();
   return !loading ? (
     <div className="bgImg flex flex-col sm:h-screen bg-white">
       <BreadCrumb
-        breadCrumbData={JSON.parse(
-          localStorage.getItem("breadCrumbData") as string
-        )}
+        breadCrumbData={getBreadCrumbData()}
       />
       <p className="font-bold text-5xl flex items-center text-white m-8">
         {"Block " +
