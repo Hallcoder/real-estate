@@ -31,6 +31,7 @@ const Properties: React.FC<Props> = ({ properties, propertyType }) => {
             />
           );
         })}
+        {properties.length <=0 && <p className="text-center w-full text-3xl my-10">"No properties found!"</p>}
     </div>
   );
 };

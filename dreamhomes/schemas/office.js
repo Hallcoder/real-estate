@@ -22,8 +22,8 @@ export default {
             validation: (Rule) => Rule.required(),
           },
           {
-            name: 'desks',
-            title: 'Desks',
+            name: 'offices',
+            title: 'Offices',
             type: 'number',
             validation: (Rule) => Rule.required(),
           },
@@ -51,9 +51,33 @@ export default {
         validation: (Rule) => Rule.required(),
       },
       {
-        name: 'nearbyFacilities',
-        title: 'Nearby Facilities',
-        type: 'string',
+        name: 'nearByFacilities',
+        title: 'NearByFacilities',
+        type: 'array',
+        of: [
+          {
+            name: 'facility',
+            title: 'Facility',
+            type: 'object',
+            fields: [
+              {
+                name: 'name',
+                title: 'Name',
+                type: 'string',
+                validation: (Rule) => Rule.required(),
+              },
+              {
+                name: 'type',
+                title: 'Type',
+                type: 'string',
+                options: {
+                  list: ['Health', 'Government service','Service','Banking', 'Commerce', 'Religion', 'Education'],
+                },
+                validation: (Rule) => Rule.required(),
+              },
+            ],
+          },
+        ],
       },
       {
         name: 'image',
@@ -107,25 +131,31 @@ export default {
           },
           {
             name: 'city',
-            title: 'City',
+            title: 'City/Province',
             type: 'string',
             validation: (Rule) => Rule.required(),
           },
           {
-            name: 'state',
-            title: 'State',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-          },
-          {
-            name: 'area',
-            title: 'Area',
+            name: 'street',
+            title: 'Street',
             type: 'string',
             validation: (Rule) => Rule.required(),
           },
           {
             name: 'country',
             title: 'Country',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+          },
+          {
+            name: 'district',
+            title: 'District',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+          },
+          {
+            name: 'sector',
+            title: 'Sector',
             type: 'string',
             validation: (Rule) => Rule.required(),
           },

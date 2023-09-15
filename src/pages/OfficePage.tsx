@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { CiGrid42 } from "react-icons/ci";
 import { AiFillPrinter } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { buildImage, client, properties } from "../utils/constants";
+import { buildImage, properties } from "../utils/constants";
 import Gallery from "../components/Gallery";
-import { TbBath, TbBed } from "react-icons/tb";
+import { TbBrandOffice, TbSpace } from "react-icons/tb";
 import Footer from "../components/Footer";
 import {
   TwitterIcon,
@@ -30,32 +29,18 @@ import AdditionalFeatures from "../components/AdditionalFeatures";
 import Contact from "../components/Contact";
 import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
-import { useParams } from "react-router-dom";
-const PropertyPage: React.FC<any> = () => {
-  const params = useParams();
+import { CiGrid42 } from "react-icons/ci";
+const OfficePage: React.FC<any> = () => {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<object[]>([]);
-  const [property, setProperty] = useState<any>({
-    name: "",
-    address: {},
-    images: [],
-    price: 0,
-    amenities: {},
-    agentInfo: {},
-    description: "",
-    status: "",
-  });
+  const [office, setOffice] = useState<any>();
   useEffect(() => {
-    client
-      .fetch(`*[_type == 'property' && _id =='${params.id}']`)
-      .then((data) => {
-        setProperty(data[0]);
-        console.log(data);
-        setLoading(false);
-      });
+    let office = JSON.parse(
+      localStorage.getItem("currentProperty") as string
+    );
+    setOffice(office);
+    setLoading(false);
   }, []);
-
-  // useEffect(() => {}, []);
   const MySwal = withReactContent(Swal);
 
   const OpenSharePopup = () => {
@@ -104,25 +89,27 @@ const PropertyPage: React.FC<any> = () => {
     });
   };
   useEffect(() => {
-    let images: Array<object> = [];
-    for (var image of property.images) {
-      console.log(image);
-      images.push({
-        image: buildImage(image.asset._ref).url(),
-      });
+    console.log("gpt here", office);
+    if (office) {
+      let images: Array<object> = [];
+      for (var image of office.images) {
+        console.log(image);
+        images.push({
+          image: buildImage(image.asset._ref).url(),
+        });
+      }
+      setImages(images);
     }
-    setImages(images);
-    console.log(typeof property.images);
-  }, [property]);
+  }, [office]);
+
   const getBreadCrumbData = () => {
     let data: any[] = JSON.parse(
       localStorage.getItem("breadCrumbData") as string
     );
     data.push({
-      label: property.name,
-      link: `/${property._id}`,
+      label: office.name,
+      link: `/office/${office._id}`,
     });
-
     return data;
   };
   // const params = useParams();
@@ -130,14 +117,14 @@ const PropertyPage: React.FC<any> = () => {
     <div className="bgImg flex flex-col sm:h-screen bg-white">
       <BreadCrumb breadCrumbData={getBreadCrumbData()} />
       <p className="font-bold text-5xl flex items-center text-white m-8">
-        {property.name}
+        {office.name}
       </p>
       <div className="sm:flex-row flex-col flex bg-white">
         <div className="bg-white mt-5 w-full sm:w-9/12">
           <p className="text-lg m-2">
-            <strong>From ${property.price} -</strong> Apartment with good rooms
+            <strong>From ${office.price} -</strong> Apartment with good rooms
             nearby basic infrastructure and home facilities provided./ For{" "}
-            <strong>{property.status.toUpperCase()}</strong>
+            <strong>{office.status}</strong>
           </p>
           <span className="flex justify-between my-4">
             <span className="flex">
@@ -157,27 +144,27 @@ const PropertyPage: React.FC<any> = () => {
           <div className="">
             <div className="flex my-4 justify-between w-full">
               <span className="flex items-center">
-                <TbBath className="text-3xl" />
+                <TbBrandOffice className="text-3xl" />
                 <span className="flex m-2 flex-col">
                   <p className="font-semibold text-lg">
-                    {property.amenities.baths}
+                    {office.amenities.meetingRooms}
                   </p>
-                  <p>Baths</p>
+                  <p>Meeting rooms</p>
                 </span>
               </span>
               <span className="flex items-center">
-                <TbBed className="text-3xl" />
+                <TbSpace className="text-3xl" />
                 <span className="flex m-2 flex-col">
                   <p className="font-semibold text-lg">
-                    {property.amenities.bedrooms}
+                    {office.amenities.offices}
                   </p>
-                  <p>bedrooms</p>
+                  <p>Office Rooms</p>
                 </span>
               </span>
               <span className="flex items-center">
                 <CiGrid42 className="text-3xl" />
                 <span className="flex m-2 flex-col">
-                  <p className="font-semibold text-lg">{property.size}</p>
+                  <p className="font-semibold text-lg">{office.size}</p>
                   <p>Sq M</p>
                 </span>
               </span>
@@ -199,52 +186,48 @@ const PropertyPage: React.FC<any> = () => {
           </div>
           <div className="sm:w-[75vw]">
             <BlankBar title={"Description"} />
-            <p className="ml-2"> {property.description}</p>
-            <BlankBar title="Address" />
+            <p className="ml-2"> {office.description}</p>
+            {/* <BlankBar title="Address" />
             <span className="flex w-3/6 justify-between my-10">
               <ul className="ml-4 text-lg">
                 <li>
-                  <strong className="font-semibold">Address: </strong>
-                  {property.address.fullAddress}
+                  <strong className="font-semibold">Address: </strong>{property.address.fullAddress}
                 </li>
                 <li>
-                  <strong className="font-semibold">City: </strong>
-                  {property.address.city}
+                  <strong className="font-semibold">City: </strong>{property.address.city}
                 </li>
                 <li>
-                  <strong className="font-semibold">District: </strong>
-                  {property.address.district}
+                  <strong className="font-semibold">District: </strong>{property.address.district}
                 </li>
                 <li>
-                  <strong className="font-semibold">Sector: </strong>
-                  {property.address.sector}
+                  <strong className="font-semibold">Sector: </strong>{property.address.sector}
                 </li>
               </ul>
               <ul className="text-lg">
                 <li>
-                  <strong className="font-semibold">Road: </strong>
-                  {property.address.street}
+                  <strong className="font-semibold">Road: </strong>{property.address.street}
                 </li>
                 <li>
-                  <strong className="font-semibold">Zip: </strong>
-                  {property.address.zipCode}
+                  <strong className="font-semibold">Zip: </strong>{property.address.zipCode}
                 </li>
               </ul>
-            </span>
-            {true && (
+            </span> */}
+            {office.nearByFacilities && (
               <div>
                 <BlankBar title="What's Nearby" />
-                <NearBy nearby={property.nearByFacilities} />
+                <NearBy nearby={office.nearByFacilities} />
               </div>
             )}
             <div>
               <BlankBar title="Additional Features" />
-              <AdditionalFeatures additional={property.additionalAmenities} />
+              <AdditionalFeatures
+                additional={Object.keys(office.additionalAmenities)}
+              />
             </div>
             <div>
               <Contact />
               <BlankBar title="Agent" />
-              <Agent agentInfo={property.agentInfo} />
+              <Agent agentInfo={office.agentInfo} />
               <BlankBar />
             </div>
           </div>
@@ -273,4 +256,4 @@ const PropertyPage: React.FC<any> = () => {
   );
 };
 
-export default PropertyPage;
+export default OfficePage;

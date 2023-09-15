@@ -15,22 +15,27 @@ import { useEffect, useState } from "react";
 function Home() {
   const [residentials, setResidentials] = useState([]);
   const [apartments, setApartments] = useState([]);
+  const [offices, setOffices] = useState([]);
   const [loading, setLoading] = useState(true);
-  var properties = [];
-  var res = [];
+  const [Aloading, setALoading] = useState(true);
+  const [Oloading, setOLoading] = useState(true);
   useEffect(() => {
     client.fetch("*[_type == 'property']").then((data) => {
       setResidentials(data);
-      properties = data;
       console.error("residentials", data);
       setLoading(false);
     });
     client.fetch("*[_type == 'apartment']").then((data) => {
       console.log("Apartments", data);
-      res = data;
       setApartments(data);
-      setLoading(false);
+      setALoading(false);
     });
+    client.fetch("*[_type == 'office']").then((data) => {
+      console.log("offices", data);
+      setOffices(data);
+      setOLoading(false);
+    });
+
     let breadCrumbData = [{ label: "Home", link: "/" }];
     localStorage.setItem(
       "breadCrumbData",
@@ -56,6 +61,7 @@ function Home() {
         <Search />
         <BlankBar />
         <PropertiesHeader />
+        <h1 className="font-semibold text-center text-3xl my-4">Residentials</h1>
         {!loading ? (
           <Properties properties={residentials} propertyType="residential" />
         ) : (
@@ -66,8 +72,17 @@ function Home() {
         <h5 className="text-center m-2 animate-bounce">
           Swipe <strong>&larr;</strong> or <strong>&rarr;</strong> to scroll{" "}
         </h5>
-        {!loading ? (
-          <Properties properties={apartments} propertyType="apartment" />
+        <h1 className="font-semibold text-center text-3xl my-4">Apartments</h1>
+        {!Aloading ? (
+          <Properties properties={apartments} />
+        ) : (
+          <div className="flex items-center justify-center">
+            <Audio color="black" />
+          </div>
+        )}
+        <h1 className="font-semibold text-center text-3xl my-4">Offices</h1>
+        {!Oloading ? (
+          <Properties properties={offices} />
         ) : (
           <div className="flex items-center justify-center">
             <Audio color="black" />
