@@ -40,6 +40,7 @@ const PropertyCard: React.FC<Props> = ({
     } else if (property._type == "office") {
       localStorage.setItem("currentProperty", JSON.stringify(property));
       navigate(`/office/${property._id}`);
+      return;
     }
     navigate(`/${id}`);
   };

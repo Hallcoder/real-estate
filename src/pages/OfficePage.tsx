@@ -21,7 +21,6 @@ import {
 } from "react-share";
 import BlankBar from "../components/BlankBar";
 import BackToTopButton from "../components/BackToTop";
-import NearBy from "../components/Nearby";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import SideFeaturedProperties from "../components/SideFeaturedProperties";
@@ -30,6 +29,7 @@ import Contact from "../components/Contact";
 import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
 import { CiGrid42 } from "react-icons/ci";
+import Nearby from "../components/Nearby";
 const OfficePage: React.FC<any> = () => {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<object[]>([]);
@@ -38,6 +38,7 @@ const OfficePage: React.FC<any> = () => {
     let office = JSON.parse(
       localStorage.getItem("currentProperty") as string
     );
+    console.log('Office',office);
     setOffice(office);
     setLoading(false);
   }, []);
@@ -187,41 +188,41 @@ const OfficePage: React.FC<any> = () => {
           <div className="sm:w-[75vw]">
             <BlankBar title={"Description"} />
             <p className="ml-2"> {office.description}</p>
-            {/* <BlankBar title="Address" />
+            <BlankBar title="Address" />
             <span className="flex w-3/6 justify-between my-10">
               <ul className="ml-4 text-lg">
                 <li>
-                  <strong className="font-semibold">Address: </strong>{property.address.fullAddress}
+                  <strong className="font-semibold">Address: </strong>{office.address.fullAddress}
                 </li>
                 <li>
-                  <strong className="font-semibold">City: </strong>{property.address.city}
+                  <strong className="font-semibold">City: </strong>{office.address.city}
                 </li>
                 <li>
-                  <strong className="font-semibold">District: </strong>{property.address.district}
+                  <strong className="font-semibold">District: </strong>{office.address.district}
                 </li>
                 <li>
-                  <strong className="font-semibold">Sector: </strong>{property.address.sector}
+                  <strong className="font-semibold">Sector: </strong>{office.address.sector}
                 </li>
               </ul>
               <ul className="text-lg">
                 <li>
-                  <strong className="font-semibold">Road: </strong>{property.address.street}
+                  <strong className="font-semibold">Road: </strong>{office.address.street}
                 </li>
                 <li>
-                  <strong className="font-semibold">Zip: </strong>{property.address.zipCode}
+                  <strong className="font-semibold">Zip: </strong>{office.address.zipCode}
                 </li>
               </ul>
-            </span> */}
+            </span>
             {office.nearByFacilities && (
               <div>
                 <BlankBar title="What's Nearby" />
-                <NearBy nearby={office.nearByFacilities} />
+                <Nearby nearby={office.nearByFacilities} />
               </div>
             )}
             <div>
               <BlankBar title="Additional Features" />
               <AdditionalFeatures
-                additional={Object.keys(office.additionalAmenities)}
+                additional={office.additionalAmenities}
               />
             </div>
             <div>

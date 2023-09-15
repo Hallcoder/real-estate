@@ -15,6 +15,7 @@ import ApartmentSelection from "./pages/ApartmentSelection.tsx";
 import ApartmentPage from "./pages/ApartmentPage.tsx";
 import SearchResultsPage from "./pages/SearchResultsPage.tsx";
 import CategoryPage from "./pages/CategoryPage.tsx";
+import OfficePage from "./pages/OfficePage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         path="/apartmentSelection/:id/:blockNumber"
         element={<ApartmentSelection />}
       />
+      <Route path="/office/:id" element={<OfficePage />}/>
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/:id" element={<PropertyPage />} />
     </Routes>

@@ -5,7 +5,7 @@ export default {
     type: 'document',
     fields: [
       {
-        name: 'sizeInMeterSquare',
+        name: 'size',
         title: 'Size in Meter Square',
         type: 'number',
         validation: (Rule) => Rule.required(),

@@ -1,10 +1,11 @@
-import { FaHospital, FaSchool, FaChurch, FaShoppingCart, FaRegBuilding } from 'react-icons/fa'; // Import icons from React Icons
+import { FaHospital, FaSchool, FaChurch, FaShoppingCart, FaRegBuilding, FaDochub } from 'react-icons/fa'; // Import icons from React Icons
 
 const Nearby = ({ nearby }) => {
   console.log(nearby)
   const iconMap = {
     health: FaHospital,
     education: FaSchool,
+    service:FaDochub,
     governmentservice: FaRegBuilding,
     commerce: FaShoppingCart,
     religion:FaChurch,
