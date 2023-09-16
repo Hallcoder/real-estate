@@ -22,16 +22,19 @@ function Home() {
   useEffect(() => {
     client.fetch("*[_type == 'property']").then((data) => {
       setResidentials(data);
+      localStorage.setItem('residentialLength',data.length);
       console.error("residentials", data);
       setLoading(false);
     });
     client.fetch("*[_type == 'apartment']").then((data) => {
       console.log("Apartments", data);
+      localStorage.setItem('apartmentLength',data.length);
       setApartments(data);
       setALoading(false);
     });
     client.fetch("*[_type == 'office']").then((data) => {
       console.log("offices", data);
+      localStorage.setItem('officeLength',data.length);
       setOffices(data);
       setOLoading(false);
     });

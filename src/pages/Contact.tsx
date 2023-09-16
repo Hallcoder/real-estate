@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 function ContactPage() {
   return (
     <div>
-      <Contact />
+      <Contact property={{}}/>
       <Footer />
     </div>
   );

@@ -248,7 +248,7 @@ const ApartmentPage: React.FC<any> = () => {
               />
             </div>
             <div>
-              <Contact />
+              <Contact property={property}/>
               <BlankBar title="Agent" />
               <Agent agentInfo={property.agentInfo} />
               <BlankBar />

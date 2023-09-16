@@ -9,7 +9,6 @@ import Header from "./components/Header.tsx";
 import InfoHeader from "./components/infoHeader.tsx";
 import PropertyPage from "./pages/propertyPage.tsx";
 import ContactPage from "./pages/Contact.tsx";
-import React from "react";
 import BlockSelection from "./pages/BlockSelection.tsx";
 import ApartmentSelection from "./pages/ApartmentSelection.tsx";
 import ApartmentPage from "./pages/ApartmentPage.tsx";

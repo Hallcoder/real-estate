@@ -34,7 +34,9 @@ const Categories = () => {
               {item.content}
             </p>
             <p className="absolute w-2/6 bottom-[5%] left-[1%] font-semibold text-lg text-white">
-              4 properties
+              {item.type == 'apartment' && `${localStorage.getItem("apartmentLength")} properties`} 
+              {item.type == 'property' && `${localStorage.getItem("residentialLength")} properties`} 
+              {item.type == 'office' && `${localStorage.getItem("officeLength")} properties`} 
             </p>
           </div>
         </div>

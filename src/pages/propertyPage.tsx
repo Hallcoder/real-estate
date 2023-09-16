@@ -242,7 +242,7 @@ const PropertyPage: React.FC<any> = () => {
               <AdditionalFeatures additional={property.additionalAmenities} />
             </div>
             <div>
-              <Contact />
+              <Contact property={property}/>
               <BlankBar title="Agent" />
               <Agent agentInfo={property.agentInfo} />
               <BlankBar />

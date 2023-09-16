@@ -226,7 +226,7 @@ const OfficePage: React.FC<any> = () => {
               />
             </div>
             <div>
-              <Contact />
+              <Contact property={office}/>
               <BlankBar title="Agent" />
               <Agent agentInfo={office.agentInfo} />
               <BlankBar />
