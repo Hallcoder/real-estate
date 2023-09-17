@@ -23,18 +23,21 @@ function Home() {
     client.fetch("*[_type == 'property']").then((data) => {
       setResidentials(data);
       localStorage.setItem('residentialLength',data.length);
+      localStorage.setItem('residentials',JSON.stringify(data));
       console.error("residentials", data);
       setLoading(false);
     });
     client.fetch("*[_type == 'apartment']").then((data) => {
       console.log("Apartments", data);
       localStorage.setItem('apartmentLength',data.length);
+      localStorage.setItem('apartments',JSON.stringify(data));
       setApartments(data);
       setALoading(false);
     });
     client.fetch("*[_type == 'office']").then((data) => {
       console.log("offices", data);
       localStorage.setItem('officeLength',data.length);
+      localStorage.setItem('offices',JSON.stringify(data));
       setOffices(data);
       setOLoading(false);
     });

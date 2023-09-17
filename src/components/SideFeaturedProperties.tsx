@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
 import PropertyCard from "./propertyCard";
+import { buildImage, client } from "../utils/constants";
 
-function SideFeaturedProperties({ properties }) {
+function SideFeaturedProperties() {
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  let shuffledProperties = shuffleArray([...JSON.parse(localStorage.getItem('residentials') as string),...JSON.parse(localStorage.getItem('apartments') as string),...JSON.parse(localStorage.getItem('offices') as string)])
   return (
-    <div className="flex flex-col space-y-2 mt-4 w-11/12">
+    <div className="flex flex-col justify-center space-y-2 mt-4 w-11/12">
       <h1 className="text-center font-semibold">Featured Properties</h1>
-      {properties.map((property,index) => {
+      {shuffledProperties.map((property,index) => {
         const { amenities, name, size, price, location, status } = property;
         return (
           <PropertyCard
             property={property}
             key={index}
-            image={''}
+            image={buildImage(property.image.asset._ref).url()}
             className={false}
             id={property._id}
             width={"auto"}
