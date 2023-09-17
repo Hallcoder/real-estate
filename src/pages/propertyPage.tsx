@@ -31,6 +31,7 @@ import Contact from "../components/Contact";
 import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
 import { useParams } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 const PropertyPage: React.FC<any> = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
@@ -45,6 +46,12 @@ const PropertyPage: React.FC<any> = () => {
     description: "",
     status: "",
   });
+  const [show, setShowDrawer] = useState<boolean>(false);
+  const showDrawer = () => {
+    console.log("showing");
+
+    setShowDrawer(!show);
+  };
   useEffect(() => {
     client
       .fetch(`*[_type == 'property' && _id =='${params.id}']`)
@@ -242,7 +249,7 @@ const PropertyPage: React.FC<any> = () => {
               <AdditionalFeatures additional={property.additionalAmenities} />
             </div>
             <div>
-              <Contact property={property}/>
+              <Contact property={property} />
               <BlankBar title="Agent" />
               <Agent agentInfo={property.agentInfo} />
               <BlankBar />
@@ -251,15 +258,16 @@ const PropertyPage: React.FC<any> = () => {
           <BackToTopButton />
         </div>
         <div className="flex flex-col items-center">
-          <SideFeaturedProperties properties={properties} />
+          <SideFeaturedProperties />
         </div>
       </div>
       <span className="m-4 sticky bottom-2 mx-auto inline-block">
-        <Fab color="inherit" variant="extended" aria-label="add">
+        <Fab color="inherit" variant="extended" aria-label="add" onClick={() => showDrawer()}>
           <SearchIcon />
           Search Property
         </Fab>
       </span>
+      {show && <SearchBox open={show} onClose={() => showDrawer()} />}
       <Footer />
     </div>
   ) : (

@@ -3,7 +3,7 @@ import { AiFillPrinter } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { buildImage, properties } from "../utils/constants";
+import { buildImage } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBrandOffice, TbSpace } from "react-icons/tb";
 import Footer from "../components/Footer";
@@ -30,10 +30,15 @@ import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
 import { CiGrid42 } from "react-icons/ci";
 import Nearby from "../components/Nearby";
+import SearchBox from "../components/SearchBox";
 const OfficePage: React.FC<any> = () => {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<object[]>([]);
   const [office, setOffice] = useState<any>();
+  const [show,setShowDrawer] = useState<boolean>(false);
+  const showDrawer = () =>{
+         setShowDrawer(!show);
+  }
   useEffect(() => {
     let office = JSON.parse(
       localStorage.getItem("currentProperty") as string
@@ -235,7 +240,7 @@ const OfficePage: React.FC<any> = () => {
           <BackToTopButton />
         </div>
         <div className="flex flex-col items-center">
-          <SideFeaturedProperties properties={properties} />
+          <SideFeaturedProperties  />
         </div>
       </div>
       <span className="m-4 sticky bottom-2 mx-auto inline-block">
@@ -244,6 +249,7 @@ const OfficePage: React.FC<any> = () => {
           Search Property
         </Fab>
       </span>
+      {show && <SearchBox open={show} onClose={() => showDrawer()}/>}
       <Footer />
     </div>
   ) : (

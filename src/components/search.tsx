@@ -1,7 +1,7 @@
 import SearchableSelect from "./searchableSelect";
 import { Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { client, locations, types } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 function Search() {
@@ -19,7 +19,7 @@ function Search() {
         )
         .then((data) => {
           localStorage.setItem("searchResults", JSON.stringify(data));
-          navigate("/searchResults")
+          navigate("/searchResults");
         });
     } else {
       client
@@ -28,7 +28,7 @@ function Search() {
         )
         .then((data) => {
           localStorage.setItem("searchResults", JSON.stringify(data));
-          navigate("/searchResults")
+          navigate("/searchResults");
         });
     }
   };
@@ -79,6 +79,7 @@ function Search() {
         <input
           type="checkbox"
           name="strict"
+          autoComplete={"sdfasf"}
           checked={strict}
           onChange={(e) => setStrict(e.target.checked)}
         />

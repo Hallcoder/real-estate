@@ -10,6 +10,7 @@ function SearchableSelect(props:{options:Object[],name:string,placeholder:String
    placeholder={props.placeholder} 
    optionFilterProp="children"
    options={props.options}
+   
      />);
 }
 

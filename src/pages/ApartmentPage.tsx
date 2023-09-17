@@ -3,7 +3,7 @@ import { AiFillPrinter } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { buildImage, properties } from "../utils/constants";
+import { buildImage } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
@@ -30,12 +30,19 @@ import Contact from "../components/Contact";
 import Agent from "../components/Agent";
 import { Fab } from "@mui/material";
 import { useParams } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 const ApartmentPage: React.FC<any> = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<object[]>([]);
   const [apartment, setApartment] = useState<any>();
   const [property, setProperty] = useState<any>();
+  const [show,setShowDrawer] = useState<boolean>(false);
+  const showDrawer = () =>{
+        console.log("showing");
+        
+         setShowDrawer(!show);
+  }
   useEffect(() => {
     const handlePopstate = (e) => {
       e.preventDefault();
@@ -57,10 +64,10 @@ const ApartmentPage: React.FC<any> = () => {
     setProperty(property);
     setLoading(false);
 
-    window.addEventListener('popstate', handlePopstate);
-  
+    window.addEventListener("popstate", handlePopstate);
+
     return () => {
-      window.removeEventListener('popstate', handlePopstate);
+      window.removeEventListener("popstate", handlePopstate);
     };
   }, []);
   const MySwal = withReactContent(Swal);
@@ -124,18 +131,27 @@ const ApartmentPage: React.FC<any> = () => {
     }
   }, [apartment]);
   const getBreadCrumbData = () => {
-    let data:any[] = JSON.parse(localStorage.getItem('breadCrumbData') as string);
-    data.push({label:property.name,link:`/blockSelection/${property._id}`});
-    data.push({label:`Block ${params.blockNumber}`,link:`/blockSelection/${property._id}`});
-    data.push({label:`Apartment ${params.apartmentNumber}`,link:`/apartmentSelection/${property._id}/${params.blockNumber}`});
+    let data: any[] = JSON.parse(
+      localStorage.getItem("breadCrumbData") as string
+    );
+    data.push({
+      label: property.name,
+      link: `/blockSelection/${property._id}`,
+    });
+    data.push({
+      label: `Block ${params.blockNumber}`,
+      link: `/blockSelection/${property._id}`,
+    });
+    data.push({
+      label: `Apartment ${params.apartmentNumber}`,
+      link: `/apartmentSelection/${property._id}/${params.blockNumber}`,
+    });
     return data;
-  }
+  };
   // const params = useParams();
   return !loading ? (
     <div className="bgImg flex flex-col sm:h-screen bg-white">
-      <BreadCrumb
-        breadCrumbData={getBreadCrumbData()}
-      />
+      <BreadCrumb breadCrumbData={getBreadCrumbData()} />
       <p className="font-bold text-5xl flex items-center text-white m-8">
         {"Block " +
           params.blockNumber +
@@ -248,7 +264,7 @@ const ApartmentPage: React.FC<any> = () => {
               />
             </div>
             <div>
-              <Contact property={property}/>
+              <Contact property={property} />
               <BlankBar title="Agent" />
               <Agent agentInfo={property.agentInfo} />
               <BlankBar />
@@ -257,15 +273,16 @@ const ApartmentPage: React.FC<any> = () => {
           <BackToTopButton />
         </div>
         <div className="flex flex-col items-center">
-          <SideFeaturedProperties properties={properties} />
+          <SideFeaturedProperties />
         </div>
       </div>
       <span className="m-4 sticky bottom-2 mx-auto inline-block">
-        <Fab color="inherit" variant="extended" aria-label="add">
+        <Fab color="inherit" variant="extended" aria-label="add"  onClick={() => showDrawer()}>
           <SearchIcon />
           Search Property
         </Fab>
       </span>
+      {show && <SearchBox open={show} onClose={() => showDrawer()}/>}
       <Footer />
     </div>
   ) : (
