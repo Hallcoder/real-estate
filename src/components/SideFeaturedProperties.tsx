@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import PropertyCard from "./propertyCard";
-import { buildImage, client } from "../utils/constants";
+import { buildImage } from "../utils/constants";
 
 function SideFeaturedProperties() {
   function shuffleArray(array) {

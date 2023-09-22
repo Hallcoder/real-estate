@@ -3,7 +3,6 @@ import { buildImage, client } from "../utils/constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { Hourglass } from "react-loader-spinner";
 import Footer from "../components/Footer";
-import Prompt from "react-router-dom";
 function ApartmentSelection() {
   const [loading, setLoading] = useState(true);
   const params = useParams();
@@ -11,9 +10,6 @@ function ApartmentSelection() {
   const [apartments, setApartments] = useState<any[]>([]);
   const handleClick = (item: any) => {
     localStorage.setItem("currentApartment", JSON.stringify(item));
-    let breadcrumbData = JSON.parse(
-      localStorage.getItem("breadCrumbData") as string
-    );
     // var equality = false;
     // for (var breadCrumb of breadcrumbData) {
     //   if (

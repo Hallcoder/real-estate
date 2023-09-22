@@ -4,7 +4,7 @@ import { AiFillPrinter } from "react-icons/ai";
 import { Audio } from "react-loader-spinner";
 import SearchIcon from "@mui/icons-material/Search";
 import BreadCrumb from "../components/breadcrumb";
-import { buildImage, client, properties } from "../utils/constants";
+import { buildImage, client } from "../utils/constants";
 import Gallery from "../components/Gallery";
 import { TbBath, TbBed } from "react-icons/tb";
 import Footer from "../components/Footer";
